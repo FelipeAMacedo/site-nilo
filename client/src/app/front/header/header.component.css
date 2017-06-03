@@ -1,0 +1,42 @@
+@media (min-width: 768px) {
+  .navbar-nav.navbar-center {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+}
+/*
+.navbar-nav.navbar-center {
+    padding-right: 50%;
+}*/
+/*
+.navbar-nav {
+    padding-left: 50%;
+}*/
+
+.navbar-default {
+    background-color: #2E3384;
+}
+
+/*.navbar-nav li {
+    background-color: #2E3384;
+}*/
+
+.navbar-nav a {
+    color: white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+
+.navbar {
+    border-radius: 0;
+    border-style: none;
+    margin-bottom: 0;
+}
+
+p.top{
+    margin-bottom:0;
+    padding-bottom:0;
+}
