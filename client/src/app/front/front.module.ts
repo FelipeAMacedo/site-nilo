@@ -1,3 +1,4 @@
+import { ProdutoService } from './../mock/produto.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
@@ -29,6 +30,7 @@ const frontRoutes: Routes = [
   ],
   exports: [
     FrontComponent
-  ]
+  ],
+  providers: [ProdutoService]
 })
 export class FrontModule { }

@@ -1,3 +1,4 @@
+import { ProdutoService } from './../../mock/produto.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.css']
 })
+
 export class ProdutosComponent implements OnInit {
 
-  constructor() { }
+  produtos = [];
+  categoria: string;
+
+  constructor(private produtoService: ProdutoService) { }
 
   ngOnInit() {
+    this.categoria = 'pedra';
+    this.produtoService.getList(this.categoria).then(
+      lista => this.produtos = lista
+    );
   }
 
   changeToList(event) {
