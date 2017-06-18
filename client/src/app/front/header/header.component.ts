@@ -9,19 +9,20 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    let clName = 'row collapsable';
+    let clName = 'navbar-toggler';
 
-    if (event.target.innerWidth < 769) {
-      document.getElementsByClassName(clName)[0].className = clName + ' collapse';
+    // Previous width: 769
+    if (event.target.innerWidth <= 991) {
+      document.getElementsByClassName(clName)[0].classList.remove('collapse');
+      document.getElementById('navbarCollapse').className = 'navbar-toggleable-md collapse';
     } else {
-      document.getElementsByClassName(clName)[0].className = clName;
+      document.getElementsByClassName(clName)[0].className = clName + ' collapse';
+      document.getElementById('navbarCollapse').classList.remove('collapse');
     }
   }
-
-
+  
   constructor() { }
 
   ngOnInit() {
-    console.log(window.innerWidth);
   }
 }

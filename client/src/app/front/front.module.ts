@@ -1,4 +1,4 @@
-import { ProdutoService } from './../mock/produto.service';
+import { ProdutoService } from './../services/produto.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 const frontRoutes: Routes = [
   {path: '', component: FrontComponent, 
       children: [
-        {path: 'produtos', component: ProdutosComponent},
+        {path: 'produtos/:categoria', component: ProdutosComponent},
         {path: '', component: HomeComponent}
   ]}
 ]; 

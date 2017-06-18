@@ -17,26 +17,67 @@
   <div class="col-md-1"><p class="top">Simulador</p><p>de tintas</p></div>
   <div class="col-md-2"><p class="top">Orçamento</p><p>Solicite o seu</p></div>
 </div>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-center">
-        <li><a routerLink="produtos">PEDRA</a></li>
-        <li><a href="#">BLOCOS</a></li>
-        <li><a href="#">CIMENTO</a></li>
-        <li><a href="#">TELHAS</a></li>
-        <li><a href="#">AREIA</a></li>
-        <li><a href="#">TIJOLO</a></li>
-        <li><a href="#">CAL</a></li>
-        <li><a href="#">CATEGORIAS</a></li>
-      </ul>
-    </div>
+<!--<nav class="navbar navbar-default navbar-static-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span> 
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav navbar-center">
+      <li><a [routerLink]="['/produtos', 'pedra']">PEDRA</a></li>
+      <li><a [routerLink]="['/produtos', 'blocos']">BLOCOS</a></li>
+      <li><a [routerLink]="['/produtos', 'cimento']">CIMENTO</a></li>
+      <li><a [routerLink]="['/produtos', 'telhas']">TELHAS</a></li>
+      <li><a [routerLink]="['/produtos', 'areia']">AREIA</a></li>
+      <li><a [routerLink]="['/produtos', 'tijolo']">TIJOLO</a></li>
+      <li><a [routerLink]="['/produtos', 'cal']">CAL</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ Categorias <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>-->
+<nav class="navbar navbar-light bg-faded rounded mb-3">
+  <button class="navbar-toggler collapse" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-toggleable-md" id="navbarCollapse">
+    <ul class="nav navbar-nav text-md-center justify-content-md-between">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/produtos', 'pedra']">PEDRA<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Downloads</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>

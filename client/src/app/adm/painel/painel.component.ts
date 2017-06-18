@@ -1,3 +1,6 @@
+import { FormsModule } from '@angular/forms';
+import { Produto } from './../../model/produto';
+import { ProdutoService } from './../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelComponent implements OnInit {
 
-  constructor() { }
+  produto: Produto = new Produto();
+
+  constructor(private produtoService: ProdutoService) { }
 
   ngOnInit() {
+  }
+
+  novoProduto() {
+    this.produtoService.insert(this.produto).then(response => this.produto = new Produto());
   }
 
 }

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AdmComponent } from './adm.component';
 import { LoginComponent } from './login/login.component';
 import { PainelComponent } from './painel/painel.component';
@@ -14,6 +15,7 @@ const admRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(admRoutes),
+    FormsModule
   ],
   declarations: [
     PainelComponent,

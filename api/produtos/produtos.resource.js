@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var produtos = require('./produtos');
 
-router.get('/',(req, res, next) => {
-    produtos.listAll()
+router.get('/:categoria',(req, res, next) => {
+    produtos.listAll(req.params.categoria)
         .then(list => {
             res.status(200).json(list);
         });

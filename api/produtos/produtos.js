@@ -10,8 +10,12 @@ let Produto = sequelize.define('produto', {
     descricao: Sequelize.TEXT
 });
 
-let listAll = function() {
-    return Produto.findAll({});
+let listAll = function(categoria) {
+    return Produto.findAll({
+        where: {
+            categoria: categoria
+        }
+    });
 }
 
 let findByID = function(id) {
@@ -19,11 +23,11 @@ let findByID = function(id) {
 }
 
 let persist = function(produto) {
-    Produto.create(produto);
+    return Produto.create(produto);
 }
 
 let remove = function(id) {
-    Produto.destroy();
+    return Produto.destroy();
 }
 
 module.exports = {

@@ -1,5 +1,9 @@
-import { ProdutoService } from './../../mock/produto.service';
+import { Produto } from './../../model/produto';
+import { ProdutoService } from './../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-produtos',
@@ -9,16 +13,18 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProdutosComponent implements OnInit {
 
-  produtos = [];
+  produtos;
   categoria: string;
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.categoria = 'pedra';
-    this.produtoService.getList(this.categoria).then(
-      lista => this.produtos = lista
-    );
+    this.route.params
+    // (+) converts string 'id' to a number
+    .switchMap((params: Params) => this.produtoService.getList(params['categoria']))
+    .subscribe((lista) => this.produtos = lista);
+    // this.categoria = 'pedra';
+    // this.produtoService.getList(this.categoria).subscribe(lista => this.produtos = lista);
   }
 
   changeToList(event) {
