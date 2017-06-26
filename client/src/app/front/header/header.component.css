@@ -39,6 +39,10 @@ p.top{
     padding-bottom:0;
 }*/
 
+b, strong {
+    color: black;
+}
+
 #header {
     border-top: 2px solid #23559A;
 }
@@ -53,7 +57,7 @@ p.top{
     display: table-cell;
     width: 10px;
 	height: 0;
-	border-top: 40px solid #09087A;
+	border-top: 40px solid #7B9CE7;
 	border-left: 150px solid transparent;
 }
 
@@ -72,9 +76,10 @@ p.top{
     opacity: 0.8;
 }
 .navbar-default.nav-upper ul {
-    background-color: #09087A;
+    background-color: #7B9CE7;
     /*background-image: url('/assets/images/ponto.png');
     background-repeat: repeat;*/
+    padding-right: 40px;
     float: right;
     display: table;
 }
@@ -82,8 +87,9 @@ p.top{
   display: table-cell;
   font-size: 14px;
 }
-.navbar-default.nav-upper .navbar-upper > li:last-child {
-  color: white;
+.navbar-default.nav-upper .navbar-upper > li > a {
+  color: black;
+  font-weight: bolder; 
   margin-left: 40px;
 }
 @media (min-width: 768px) {
