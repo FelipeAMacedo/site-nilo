@@ -53,8 +53,8 @@ p.top{
     display: table-cell;
     width: 10px;
 	height: 0;
-	border-top: 50px solid #5385c6;
-	border-left: 50px solid transparent;
+	border-top: 40px solid #09087A;
+	border-left: 150px solid transparent;
 }
 
 .no-padding {
@@ -67,10 +67,14 @@ p.top{
 }
 
 .navbar-default.nav-upper {
-    height: 50px;
+    background-color: white;
+    height: 40px;
+    opacity: 0.8;
 }
 .navbar-default.nav-upper ul {
-    background-color: #5385c6;
+    background-color: #09087A;
+    /*background-image: url('/assets/images/ponto.png');
+    background-repeat: repeat;*/
     float: right;
     display: table;
 }
@@ -78,18 +82,26 @@ p.top{
   display: table-cell;
   font-size: 14px;
 }
-.navbar-default.nav-upper .navbar-upper > li > a {
-  color: #777;
+.navbar-default.nav-upper .navbar-upper > li:last-child {
+  color: white;
+  margin-left: 40px;
 }
 @media (min-width: 768px) {
-  .navbar.navbar-lower .navbar-nav {
-    margin-left: 100px;
-  }
+    .navbar.navbar-lower .navbar-nav {
+        margin-right: 50px;
+    }
+
+    .navbar-default.nav-lower .navbar-nav > li > a {
+        color: #777;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
 }
+
 .navbar-logo {
-  background-image: url('construcao.gif');
-  width:200px;
-  height: 200px;
+  background-image: url('/assets/images/construcao.gif');
+  width:170px;
+  height: 120px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -97,4 +109,5 @@ p.top{
   top: 5px;
   left: 15px;
   z-index: 1051;
+  margin-left:60px;
 }
