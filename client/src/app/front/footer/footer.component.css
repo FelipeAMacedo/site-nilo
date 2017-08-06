@@ -1,5 +1,5 @@
 .footer {
-    background: #36616D none repeat scroll 0 0;
+    background: #23559A none repeat scroll 0 0;
     border-top: 4px solid #fcab0e;
     margin: 0;
     padding: 20px 0;
@@ -9,7 +9,7 @@
 }
 .footer_dv h4 {
     color: #fcab0e;
-    font-family: roboto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -43,4 +43,20 @@
 
 .conhecer {
     background-color: #fcab0e;
+}
+
+.footer_dv ul li a:first-child {
+    border-top: medium none;
+    box-shadow: none;
+}
+.footer_dv ul li a {
+    border-top: 1px solid #000;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.2);
+    color: #f1f2f2;
+    padding: 5px 0;
+}
+
+#map {
+    max-width: 100%;
+    margin: 0;
 }

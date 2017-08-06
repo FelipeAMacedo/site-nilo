@@ -39,10 +39,6 @@ p.top{
     padding-bottom:0;
 }*/
 
-b, strong {
-    color: black;
-}
-
 #header {
     border-top: 2px solid #23559A;
 }
@@ -52,31 +48,25 @@ b, strong {
     display: table;
 }
 
-
-.triangle {
-    display: table-cell;
-    width: 10px;
-	height: 0;
-	border-top: 40px solid #7B9CE7;
-	border-left: 150px solid transparent;
-}
-
 .no-padding {
     padding: 0px;
 }
 
-.navbar-lower {
-    background-color: white;
+.navbar {
     opacity: 0.8;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    background-color: white;
+
 }
 
 .navbar-default.nav-upper {
-    background-color: white;
+    background-color: white; 
     height: 40px;
-    opacity: 0.8;
+    opacity: 0.8; 
 }
 .navbar-default.nav-upper ul {
-    background-color: #7B9CE7;
+    background-color: #23559A;
     /*background-image: url('/assets/images/ponto.png');
     background-repeat: repeat;*/
     padding-right: 40px;
@@ -86,12 +76,84 @@ b, strong {
 .navbar-default.nav-upper .navbar-upper > li {
   display: table-cell;
   font-size: 14px;
+  width: 120px;
 }
 .navbar-default.nav-upper .navbar-upper > li > a {
-  color: black;
-  font-weight: bolder; 
-  margin-left: 40px;
+  color: whitesmoke;
+  font-weight: bolder;
 }
+
+.navbar-default.nav-upper .navbar-upper > li > a:hover {
+    background-color: #4870A7;
+}
+
+.navbar-default.nav-upper .navbar-upper > li:hover {
+    background-color: #4870A7;
+}
+
+
+.navbar-logo {
+  background-image: url('/assets/images/construcao.gif');
+  width:170px;
+  height: 170px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  z-index: 1051;
+  margin-left:60px;
+}
+
+.triangle {
+    display: table-cell;
+    width: 10px;
+	height: 0;
+	border-top: 40px solid #23559A;
+    /*#034EA2*/
+	border-left: 150px solid transparent;
+    opacity: 1.0;
+}
+
+.navbar-center {
+    background-color: blueviolet;
+    border: none;
+}
+
+#nav-ul {
+    display: flex;
+    width: 100%;
+}
+
+#nav-li {
+    flex-grow: 1;
+}
+
+#myNavbar a {
+    color: black;
+    /* pointer-events: all; */
+    padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@media (max-width: 767px) {
+    .navbar-logo {
+        display: block;
+        position: static;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .navbar-lower {
+        display: none;
+    }
+
+    #header {
+        position: static;
+    }
+}
+
 @media (min-width: 768px) {
     .navbar.navbar-lower .navbar-nav {
         margin-right: 50px;
@@ -102,18 +164,4 @@ b, strong {
         margin-left: 40px;
         margin-right: 40px;
     }
-}
-
-.navbar-logo {
-  background-image: url('/assets/images/construcao.gif');
-  width:170px;
-  height: 120px;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 5px;
-  left: 15px;
-  z-index: 1051;
-  margin-left:60px;
 }

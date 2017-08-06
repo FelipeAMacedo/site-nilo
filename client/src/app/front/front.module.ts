@@ -1,3 +1,4 @@
+import { SobreComponent } from './sobre/sobre.component';
 import { ProdutoService } from './../services/produto.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,10 +8,13 @@ import { FrontComponent } from './front.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ContatoComponent } from './contato/contato.component';
 
 const frontRoutes: Routes = [
   {path: '', component: FrontComponent, 
       children: [
+        {path: 'sobre-nos', component: SobreComponent},
+        {path: 'contato', component: ContatoComponent},
         {path: 'produtos/:categoria', component: ProdutosComponent},
         {path: '', component: HomeComponent}
   ]}
@@ -26,7 +30,9 @@ const frontRoutes: Routes = [
     FooterComponent,
     FrontComponent,
     ProdutosComponent,
-    HomeComponent
+    HomeComponent,
+    ContatoComponent,
+    SobreComponent
   ],
   exports: [
     FrontComponent
