@@ -53,19 +53,19 @@ p.top{
 }
 
 .navbar {
-    opacity: 0.8;
+    /* opacity: 0.8; */
     margin-bottom: 0px;
     border-radius: 0px;
     background-color: white;
 
 }
 
-.navbar-default.nav-upper {
+.nav-upper {
     background-color: white; 
     height: 40px;
-    opacity: 0.8; 
+    /* opacity: 0.8;  */
 }
-.navbar-default.nav-upper ul {
+.nav-upper ul {
     background-color: #23559A;
     /*background-image: url('/assets/images/ponto.png');
     background-repeat: repeat;*/
@@ -73,24 +73,19 @@ p.top{
     float: right;
     display: table;
 }
-.navbar-default.nav-upper .navbar-upper > li {
-  display: table-cell;
-  font-size: 14px;
-  width: 120px;
+.navbar-upper > li {
+    display: table-cell;
+    font-size: 14px;
+    width: 120px;
 }
-.navbar-default.nav-upper .navbar-upper > li > a {
-  color: whitesmoke;
-  font-weight: bolder;
-}
-
-.navbar-default.nav-upper .navbar-upper > li > a:hover {
-    background-color: #4870A7;
+.navbar-upper > li > a {
+    color: whitesmoke; 
+    font-weight: bolder;
 }
 
-.navbar-default.nav-upper .navbar-upper > li:hover {
-    background-color: #4870A7;
+.navbar-upper > li > a:hover {
+     background-color: #4870A7; 
 }
-
 
 .navbar-logo {
   background-image: url('/assets/images/construcao.gif');
@@ -113,11 +108,10 @@ p.top{
 	border-top: 40px solid #23559A;
     /*#034EA2*/
 	border-left: 150px solid transparent;
-    opacity: 1.0;
 }
 
 .navbar-center {
-    background-color: blueviolet;
+    background-color: #094FA3;
     border: none;
 }
 
@@ -130,11 +124,58 @@ p.top{
     flex-grow: 1;
 }
 
+#myNavbar {
+    background-color: #094FA3;
+    border-bottom: 2px solid #23559A;    
+}
+
 #myNavbar a {
-    color: black;
-    /* pointer-events: all; */
-    padding: 20px;
+    color: white;
+    font-weight: bolder;
+    font-size: 0.9em;
+    width: 9.69%;
+    max-width: 100%;
+    text-align: center;
+    padding: 20px 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-left: 1px solid #578ed6; /* claro */
+    border-right: 1px solid #0c366d; /* escuro */
+}
+
+#myNavbar a:first-child {
+    border-left:none;
+}
+
+#myNavbar a:last-child {
+    border-right:none;
+}
+
+/* #myNavbar a:nth-last-child(-n+2) {
+    border: none; */
+/* } */
+
+#myNavbar .dropdown {
+    border-left: 1px solid #578ed6;
+    width: 11%;
+    padding: 20px;
+}
+
+.dropdown-menu {
+    left: -100%; 
+    position: absolute;
+    right: 0;
+    z-index:1;
+    padding-left: 10%; 
+    width: 200%;
+    background-color: red;
+}
+
+.dropdown-menu li{
+    border: none;
+}
+
+#myNavbar a:hover {
+    background-color: #23559A;
 }
 
 @media (max-width: 767px) {
@@ -165,3 +206,22 @@ p.top{
         margin-right: 40px;
     }
 }
+
+/* 
+.myNewNavbar {
+    width: 100%;
+}
+
+.navContent {
+    margin: 0 auto;
+    width: 69.31%;
+    background-color: red;
+}
+
+.navContent a {
+    margin: 0 auto;
+    float: left;
+    width: 12%;
+    text-align: center;
+    background-color: blue;
+} */
