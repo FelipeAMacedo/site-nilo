@@ -53,7 +53,7 @@ p.top{
 }
 
 .navbar {
-    /* opacity: 0.8; */
+     /* opacity: 0.8;  */
     margin-bottom: 0px;
     border-radius: 0px;
     background-color: white;
@@ -63,7 +63,7 @@ p.top{
 .nav-upper {
     background-color: white; 
     height: 40px;
-    /* opacity: 0.8;  */
+     /* opacity: 0.8;   */
 }
 .nav-upper ul {
     background-color: #23559A;
@@ -126,41 +126,67 @@ p.top{
 
 #myNavbar {
     background-color: #094FA3;
-    border-bottom: 2px solid #23559A;    
+    border-bottom: 2px solid #23559A;
+    /* padding: 0; */
 }
 
 #myNavbar a {
+    float: left;
     color: white;
     font-weight: bolder;
     font-size: 0.9em;
-    width: 9.69%;
-    max-width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-left: 1px solid #578ed6; /* claro */
-    border-right: 1px solid #0c366d; /* escuro */
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid #0c366d;
+    text-decoration: none;
 }
 
-#myNavbar a:first-child {
-    border-left:none;
+#myNavbar .container {
+    padding: 0;
 }
-
-#myNavbar a:last-child {
-    border-right:none;
-}
-
-/* #myNavbar a:nth-last-child(-n+2) {
-    border: none; */
-/* } */
-
-#myNavbar .dropdown {
-    border-left: 1px solid #578ed6;
-    width: 11%;
-    padding: 20px;
-}
-
+ 
 .dropdown-menu {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.dropdown-menu a {
+    background-color: black;
+    padding-left: 3.5em !important;
+}
+
+@media (min-width: 768px) {
+    #myNavbar a {
+        text-align: center;
+        padding: 20px 0;
+        width: 14.28%;
+        /* max-width: 100%; */
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        border-bottom: none;
+        border-left: 1px solid #578ed6; /* claro */
+        border-right: 1px solid #0c366d; /* escuro */
+    }
+
+    #myNavbar a:first-child {
+        border-left:none;
+    }
+
+    #myNavbar a:nth-last-child(-n+2) {
+        border-right: none;
+    }
+
+    .dropdown-menu {
+        width: 81.08%;
+        left: 9.46%; 
+    }
+}
+
+
+/* .dropdown-menu {
     left: -100%; 
     position: absolute;
     right: 0;
@@ -168,11 +194,11 @@ p.top{
     padding-left: 10%; 
     width: 200%;
     background-color: red;
-}
+} 
 
 .dropdown-menu li{
     border: none;
-}
+} */
 
 #myNavbar a:hover {
     background-color: #23559A;

@@ -9,29 +9,41 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProdutoService {
 
-  url = 'http://localhost:3000/api/produtos/';
+	url = 'http://localhost:3000/api/produtos/';
 
-  constructor(private http: Http) {
-  }
+	constructor(private http: Http) {
+	}
 
-  getList(categoria: string) {
-    return this.http.get(this.url + categoria)
-        .map(response => response.json())
-        .catch(error => 'Server error');
-  }
+	getAll() {
+		return this.http.get(this.url)
+			.map(response => response.json())
+			.catch(error => 'Server error');
+	}
 
-  insert(produto) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.url, produto, options).toPromise()
-      .then(response => response.json())
-      .catch(error => console.log(error));
-  }
+	getList(categoria: string) {
+		return this.http.get(this.url + categoria)
+			.map(response => response.json())
+			.catch(error => 'Server error');
+	}
 
-  remove(id) {
-    return this.http.delete(this.url + id).toPromise()
-      .then(response => response.json())
-      .catch(error => console.log(error));
-    // this.produtos.
-  }
+	get(id) {
+		return this.http.get(this.url + id).toPromise()
+			.then(response => response.json())
+			.catch(error => 'Server error');
+	}
+
+	insert(produto) {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({ headers: headers });
+		return this.http.post(this.url, produto, options).toPromise()
+			.then(response => response.json())
+			.catch(error => console.log(error));
+	}
+
+	remove(id) {
+		return this.http.delete(this.url + id).toPromise()
+			.then(response => response.json())
+			.catch(error => console.log(error));
+			// this.produtos.
+  	}
 }

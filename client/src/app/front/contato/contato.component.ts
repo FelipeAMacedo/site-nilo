@@ -1,3 +1,5 @@
+import { EmailContato } from './emailContato';
+import { ContatoService } from './contato.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContatoComponent implements OnInit {
 
-  constructor() { }
+  email: EmailContato = new EmailContato();
+
+  constructor(private contatoService: ContatoService) { }
 
   ngOnInit() {
   }
 
+  enviarEmail() {
+    this.contatoService.enviarEmail(this.email);
+  }
 }

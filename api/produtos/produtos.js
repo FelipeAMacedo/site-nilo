@@ -10,12 +10,16 @@ let Produto = sequelize.define('produto', {
     descricao: Sequelize.TEXT
 });
 
-let listAll = function(categoria) {
+let listAllByCategory = function(categoria) {
     return Produto.findAll({
         where: {
             categoria: categoria
         }
     });
+}
+
+let listAll = function(categoria) {
+    return Produto.findAll();
 }
 
 let findByID = function(id) {
@@ -32,6 +36,7 @@ let remove = function(id) {
 
 module.exports = {
     listAll,
+    listAllByCategory,
     findByID,
     persist,
     remove

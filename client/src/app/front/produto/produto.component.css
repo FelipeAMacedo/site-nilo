@@ -1,0 +1,21 @@
+.content {
+    margin-top: 230px;
+}
+
+@media (max-width: 767px) {
+    .content {
+        margin-top: 0px;
+    }
+}
+
+h1 {
+    border-bottom: 1px dotted lightgray;
+}
+
+.info {
+    background-color: #FAFAFA;
+}
+
+.row {
+    margin-bottom: 3.0em;
+}

@@ -5,6 +5,8 @@ var path = require('path');
 var cors = require('cors');
 
 var produtos = require('./api/produtos/produtos.resource');
+var contato = require('./api/contato/contato.resource');
+var produto = require('./api/produto/produto.resource');
 
 app.use(cors());
 
@@ -15,6 +17,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/api/produtos', produtos);
+app.use('/api/contato', contato);
+app.use('/api/produtos/pedra/', produto)
 
 app.get('/', (req, res, next) => {
     app.use(express.static(path.join(__dirname, 'client/dist')));

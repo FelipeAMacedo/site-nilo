@@ -2,17 +2,17 @@ var express = require('express');
 var router = express.Router();
 var produtos = require('./produtos');
 
-router.get('/:categoria',(req, res, next) => {
-    produtos.listAll(req.params.categoria)
+router.get('/:categoria', (req, res, next) => {
+    produtos.listAllByCategory(req.params.categoria)
         .then(list => {
             res.status(200).json(list);
         });
 });
 
-router.get('/:id', (req, res, next) => {
-    produtos.findByID(req.params.id)
-        .then(produto => {
-            res.status(200).json(produto);
+router.get('/', (req, res, next) => {
+    produtos.listAll()
+        .then(list => {
+            res.status(200).json(list);
         });
 });
 

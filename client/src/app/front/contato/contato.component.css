@@ -3,3 +3,7 @@
         margin-top: 230px;
     }
 }
+
+h1 {
+    border-bottom: 3px solid darkslateblue;
+}

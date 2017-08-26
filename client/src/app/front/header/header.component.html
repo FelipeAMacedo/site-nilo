@@ -18,7 +18,7 @@
 					<div class="triangle"></div>
 					<ul class="nav navbar-upper">
 						<li><a href='' [routerLink]="['/']" class="text-center">INÍCIO</a></li>
-						<li><a href='' class="text-center">PRODUTOS</a></li>
+						<li><a href='' [routerLink]="['/produtos']" class="text-center">PRODUTOS</a></li>
 						<li><a href='' [routerLink]="['/sobre-nos']" class="text-center">SOBRE NÓS</a></li>
 						<li><a href='' [routerLink]="['/contato']" class="text-center">CONTATO</a></li>
 					</ul>
@@ -57,26 +57,32 @@
 				<span class="icon-bar"></span> 
 			</button>
 		</div>
-     	<div class="collapse navbar-collapse" id="myNavbar">
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'pedra']">PEDRA</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'blocos']">BLOCOS</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'cimento']">CIMENTO</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'telhas']">TELHAS</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'areia']">AREIA</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'tijolo']">TIJOLO</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'cal']">CAL</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferragens']">FERRAGENS</a>
-			<a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferramentas']">FERRAMENTAS</a>
-			<div class="col-md-1 dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ Categorias <span class="caret"></span></a> 
-				<ul class="dropdown-menu">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="#">Separated link</a></li>
-				</ul> 
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<div class="container">
+				<a href="#" class="col-md-1" *ngFor="let pagina of paginasMenu" [routerLink]="['/produtos', pagina.link]">{{ pagina.nome }}</a>
+				<!-- <a href="#" class="col-md-1" [routerLink]="['/produtos', 'blocos']">BLOCOS</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'cimento']">CIMENTO</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'telhas']">TELHAS</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'areia']">AREIA</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'tijolo']">TIJOLO</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'cal']">CAL</a> -->
+				<!-- <a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferragens']">FERRAGENS</a>
+				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferramentas']">FERRAMENTAS</a> -->
+				<!-- <div class="col-md-1 dropdown"> -->
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ Categorias <span class="caret"></span></a> 
+					<ul class="dropdown-menu">
+						<li *ngFor="let pMais of paginasMais"><a href="#">{{ pMais.nome }}</a></li>
+						 <!-- <li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li> -->
+						<!-- <li role="separator" class="divider"></li> -->
+						<!-- <li><a href="#">Separated link</a></li>  -->
+					</ul> 
+				<!-- </div> -->
 			</div>
+			<!-- Div usada como teste com o dropdown
+				<div class="teste" style="position: fixed; right: 0; bottom: 0; height: 200px; width: 200px; background-color: red; display: none;">
+
+			</div> -->
 		</div> 
  	</nav>
 </nav>

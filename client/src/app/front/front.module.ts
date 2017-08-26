@@ -1,3 +1,5 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContatoService } from './contato/contato.service';
 import { SobreComponent } from './sobre/sobre.component';
 import { ProdutoService } from './../services/produto.service';
 import { NgModule } from '@angular/core';
@@ -9,6 +11,7 @@ import { ProdutosComponent } from './produtos/produtos.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ContatoComponent } from './contato/contato.component';
+import { ProdutoComponent } from './produto/produto.component';
 
 const frontRoutes: Routes = [
   {path: '', component: FrontComponent, 
@@ -16,6 +19,8 @@ const frontRoutes: Routes = [
         {path: 'sobre-nos', component: SobreComponent},
         {path: 'contato', component: ContatoComponent},
         {path: 'produtos/:categoria', component: ProdutosComponent},
+        {path: ':id', component: ProdutoComponent},
+        {path: 'produtos', component: ProdutosComponent},
         {path: '', component: HomeComponent}
   ]}
 ]; 
@@ -23,6 +28,8 @@ const frontRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(frontRoutes)
   ],
   declarations: [
@@ -32,11 +39,12 @@ const frontRoutes: Routes = [
     ProdutosComponent,
     HomeComponent,
     ContatoComponent,
-    SobreComponent
+    SobreComponent,
+    ProdutoComponent
   ],
   exports: [
     FrontComponent
   ],
-  providers: [ProdutoService]
+  providers: [ProdutoService, ContatoService]
 })
 export class FrontModule { }

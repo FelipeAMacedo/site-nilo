@@ -19,12 +19,16 @@ export class ProdutosComponent implements OnInit {
   constructor(private produtoService: ProdutoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params
-    // (+) converts string 'id' to a number
-    .switchMap((params: Params) => this.produtoService.getList(params['categoria']))
-    .subscribe((lista) => this.produtos = lista);
-    // this.categoria = 'pedra';
-    // this.produtoService.getList(this.categoria).subscribe(lista => this.produtos = lista);
+    if(this.route.params['categoria']) {
+      this.route.params
+      // (+) converts string 'id' to a number
+      .switchMap((params: Params) => this.produtoService.getList(params['categoria']))
+      .subscribe((lista) => this.produtos = lista);
+      // this.categoria = 'pedra';
+      // this.produtoService.getList(this.categoria).subscribe(lista => this.produtos = lista);
+    } else {
+      this.produtoService.getAll().subscribe(lista => this.produtos = lista);
+    }
   }
 
   changeToList(event) {
