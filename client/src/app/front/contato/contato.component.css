@@ -1,9 +1,11 @@
-@media (min-width: 768px) {
-    .content {
-        margin-top: 230px;
-    }
+.content {
+    margin-top: 0px;
 }
 
 h1 {
     border-bottom: 3px solid darkslateblue;
+}
+
+#telefone {
+    font-size: 1.5em;
 }
