@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, RequestOptions, Http } from '@angular/http';
+import { Headers, RequestOptions, Http, URLSearchParams } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
@@ -7,41 +7,43 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class ProdutoService {
+export class OfertaService {
 
-	url = 'http://localhost:3000/api/produtos/';
+	private url = 'http://localhost:3000/api/oferta';
 
 	constructor(private http: Http) {
 	}
 
 	getAll() {
-		return this.http.get(this.url).toPromise()
-			.then(response => response.json())
+		return this.http.get(this.url)
+			.map(response => response.json())
 			.catch(error => 'Server error');
 	}
 
-	getList(categoria: string) {
-		return this.http.get(this.url + categoria).toPromise()
-			.then(response => response.json())
+	getLast(lastNum: number) {
+		let params = new URLSearchParams();
+		params.set('qtd', '4');
+		let options = new RequestOptions({
+			// Have to make a URLSearchParams with a query string
+			search: params // <-----
+		});
+		return this.http.get(this.url, options)
+			.map(response => response.json())
 			.catch(error => 'Server error');
 	}
 
 	get(id) {
-		return this.http.get(this.url + id).toPromise()
+		return this.http.get(this.url + '/' + id).toPromise()
 			.then(response => response.json())
 			.catch(error => 'Server error');
 	}
 
-	insert(produto) {
+	insert(oferta) {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
 		return new Promise((resolve, reject) => {
-			this.http.post(this.url, produto, options).toPromise()
-			.then(response => {
-				console.log('-----------AQUI----------');
-				console.log(response);
-				resolve(response.json());
-			})
+			this.http.post(this.url, oferta, options).toPromise()
+			.then(response => resolve(response.json()))
 			.catch(error => reject(error))
 		});
 	}

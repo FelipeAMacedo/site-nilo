@@ -10,15 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelComponent implements OnInit {
 
-  produto: Produto = new Produto();
-
-  constructor(private produtoService: ProdutoService) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
-  novoProduto() {
-    this.produtoService.insert(this.produto).then(response => this.produto = new Produto());
-  }
-
 }

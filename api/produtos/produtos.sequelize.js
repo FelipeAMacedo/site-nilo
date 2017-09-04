@@ -1,14 +1,7 @@
-let Sequelize = require('sequelize');
-let sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
 
-let Produto = sequelize.define('produto', {
-    nome: Sequelize.STRING,
-    categoria: Sequelize.STRING,
-    marca: Sequelize.STRING,
-    quantidade: Sequelize.DOUBLE,
-    uMedida: Sequelize.STRING,
-    descricao: Sequelize.TEXT
-});
+const Produto = sequelize.import("../../schemas/produto");
 
 let listAllByCategory = function(categoria) {
     return Produto.findAll({
@@ -31,7 +24,9 @@ let persist = function(produto) {
 }
 
 let remove = function(id) {
-    return Produto.destroy();
+    return Produto.destroy({
+        where: {id: id}
+    });
 }
 
 module.exports = {

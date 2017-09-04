@@ -1,12 +1,15 @@
 export class Produto {
+    id: number;
     nome: string;
     categoria: string;
     marca: string;
-    quantidade: number;
-    uMedida: string;
+    preco: number;
     descricao: string;
+    mostrar: boolean;
 
     constructor(){};
+
+    
     // constructor(nome: string, categoria: string, marca: string,
     //             quantidade: number, uMedida: string, descricao: string)
     // {

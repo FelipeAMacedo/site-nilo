@@ -7,3 +7,22 @@
         margin-top: 0px;
     }
 }
+
+.ofertas {
+    margin: auto;
+}
+
+.oferta-nome {
+    font-weight: 600;
+}
+
+.oferta-de {
+    font-size: 0.9em;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.oferta-por {
+    font-size: 1.5em;
+    font-weight: 900;
+}

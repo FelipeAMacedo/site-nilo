@@ -6,6 +6,8 @@
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
     <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
+    <li data-target="#myCarousel" data-slide-to="5"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -23,7 +25,15 @@
     </div>
 
     <div class="item">
-      <img src="/assets/images/imagem4.jpg" class="img-responsive" width="100%" alt="Promoção conduíte 2">
+      <img src="/assets/images/imagem5.jpg" class="img-responsive" width="100%" alt="Promoção conduíte 2">
+    </div>
+
+    <div class="item">
+      <img src="/assets/images/imagem6.jpg" class="img-responsive" width="100%" alt="Promoção conduíte 2">
+    </div>
+
+    <div class="item">
+      <img src="/assets/images/imagem7.jpg" class="img-responsive" width="100%" alt="Promoção conduíte 2">
     </div>
   </div>
 
@@ -38,20 +48,19 @@
   </a>
 </div>
 
-<br /><br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="container">
+
+<div class="container">  
+  <div class="ofertas" *ngIf="produtos.length > 0">
+    <h2>Ofertas</h2>
+    <div class="row">
+      <div *ngFor="let produto of produtos" class="col-md-3">
+        Imagem: {{ produto.imagem }} <br />
+        <span class="oferta-nome">{{ produto.nome }}</span> <br />
+        <span class="oferta-de">R$ {{ produto.preco }}</span><br />
+        <span class="oferta-por">R$ {{ produto.precoOferta }}</span><br />
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12 text-center" style="border-bottom: 1px dotted black"><h3>Marcas com as quais trabalhamos</h3></div>
     <br/>

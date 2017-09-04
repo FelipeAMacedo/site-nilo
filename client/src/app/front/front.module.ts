@@ -1,3 +1,5 @@
+import { ImagemService } from './../services/imagem.service';
+import { OfertaService } from './../services/oferta.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContatoService } from './contato/contato.service';
 import { SobreComponent } from './sobre/sobre.component';
@@ -19,7 +21,7 @@ const frontRoutes: Routes = [
         {path: 'sobre-nos', component: SobreComponent},
         {path: 'contato', component: ContatoComponent},
         {path: 'produtos/:categoria', component: ProdutosComponent},
-        {path: ':id', component: ProdutoComponent},
+        // {path: ':id', component: ProdutoComponent},
         {path: 'produtos', component: ProdutosComponent},
         {path: '', component: HomeComponent}
   ]}
@@ -45,6 +47,6 @@ const frontRoutes: Routes = [
   exports: [
     FrontComponent
   ],
-  providers: [ProdutoService, ContatoService]
+  providers: [ProdutoService, ContatoService, OfertaService, ImagemService]
 })
 export class FrontModule { }

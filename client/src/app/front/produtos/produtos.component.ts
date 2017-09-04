@@ -27,7 +27,7 @@ export class ProdutosComponent implements OnInit {
       // this.categoria = 'pedra';
       // this.produtoService.getList(this.categoria).subscribe(lista => this.produtos = lista);
     } else {
-      this.produtoService.getAll().subscribe(lista => this.produtos = lista);
+      this.produtoService.getAll().then(lista => this.produtos = lista);
     }
   }
 

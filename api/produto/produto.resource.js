@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var produtos = require('../produtos/produtos');
+var produtos = require('../produtos/produtos.sequelize');
 
 router.get('/:id', (req, res, next) => {
     produtos.findByID(req.params.id)
