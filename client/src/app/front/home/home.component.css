@@ -1,11 +1,5 @@
 .content {
-    margin-top: 230px;
-}
-
-@media (max-width: 767px) {
-    .content {
-        margin-top: 0px;
-    }
+    margin-top: 0px;
 }
 
 .ofertas {

@@ -55,9 +55,3 @@
 {
     margin: 0 0 11px;
 }
-
-@media (min-width: 768px) {
-    .container {
-        margin-top: 220px;
-    }
-}
