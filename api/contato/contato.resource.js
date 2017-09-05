@@ -14,7 +14,6 @@ let transporter = mailer.createTransport({
 });
 
 router.post('/', (req, res, next) => {
-    console.log('chegou aqui');
     let email = req.body;
 
     let mailOptions = {

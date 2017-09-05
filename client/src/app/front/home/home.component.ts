@@ -29,10 +29,7 @@ export class HomeComponent implements OnInit {
             throw error;
           });
         });
-
-
       });
     });
   }
-
 }

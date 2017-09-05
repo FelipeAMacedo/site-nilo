@@ -19,7 +19,8 @@
     "express": "^4.15.3",
     "mysql2": "^1.4.2",
     "nodemailer": "^4.0.1",
-    "sequelize": "^4.1.0"
+    "sequelize": "^4.1.0",
+    "sharp": "^0.18.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

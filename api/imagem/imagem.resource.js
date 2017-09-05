@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var imagem = require('./imagem.sequelize');
+var sharp = require('sharp');
 
 router.get('/:id', (req, res) => {
     imagem.findAll(req.params.id)
@@ -18,6 +19,8 @@ router.get('/:id/principal', (req, res) => {
 
 
 router.post('/', (req, res, next) => {
+    let body = 
+
     imagem.persist(req.body)
         .then(() => {
             console.log('produto inserido com sucesso');

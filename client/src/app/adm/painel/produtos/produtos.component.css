@@ -30,3 +30,13 @@
 .fotoBanner {
     height: 300px;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+}
