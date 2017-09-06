@@ -9,7 +9,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProdutoService {
 
-	url = 'http://localhost:3000/api/produtos/';
+	// private url = 'http://localhost:3000/api/produtos/';
+	private url = 'https://nilo-materiais-construcao.herokuapp.com/api/produtos';
 
 	constructor(private http: Http) {
 	}
