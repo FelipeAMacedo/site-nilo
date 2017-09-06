@@ -5,12 +5,13 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/timeout';
 
 @Injectable()
 export class ProdutoService {
 
 	// private url = 'http://localhost:3000/api/produtos/';
-	private url = 'https://nilo-materiais-construcao.herokuapp.com/api/produtos';
+	private url = 'https://nilo-materiais-construcao.herokuapp.com/api/produtos/';
 
 	constructor(private http: Http) {
 	}
@@ -36,15 +37,12 @@ export class ProdutoService {
 	insert(produto) {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
-		return new Promise((resolve, reject) => {
-			this.http.post(this.url, produto, options).toPromise()
+		return this.http.post(this.url, produto, options)
+			.toPromise()
 			.then(response => {
-				console.log('-----------AQUI----------');
-				console.log(response);
-				resolve(response.json());
+				response.json();
 			})
-			.catch(error => reject(error))
-		});
+			.catch(error => 'Server error');
 	}
 
 	remove(id) {

@@ -12,6 +12,8 @@ export class AuthService {
     if (username == 'nilo' && password == 'nilo201730') {
       this.loggedIn = true;
 
+      window.sessionStorage.setItem('logado', "sim");
+
       this.router.navigate(['/adm/painel/produtos']);
     }
   }

@@ -26,8 +26,10 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     produtos.persist(req.body)
         .then(() => {
-            console.log('produto inserido com sucesso');
             res.status(200);
+        })
+        .catch(() => {
+            res.status(400);
         });
 });
 
@@ -36,6 +38,9 @@ router.delete('/:id', (req, res, next) => {
         .then(() => {
             console.log('produto removido com sucesso');
             res.status(200);
+        })
+        .catch(() => {
+            res.status(400);
         });
 });
 

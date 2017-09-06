@@ -18,22 +18,25 @@ const admRoutes: Routes = [
       component: LoginComponent
     },{
       path: 'painel',
-      canActivateChild: [AuthGuardService],
       children: [{
           path: '',
           pathMatch: 'full',
-          component: PainelComponent
+          component: PainelComponent,
+          canActivate: [AuthGuardService]
         },{
           path: 'produtos',
-          component: ProdutosComponent
+          component: ProdutosComponent,
+          canActivate: [AuthGuardService]
         },
         {
           path: 'imagens',
-          component: ImagemComponent
+          component: ImagemComponent,
+          canActivate: [AuthGuardService]
         },
         {
           path: 'ofertas',
-          component: OfertaComponent
+          component: OfertaComponent,
+          canActivate: [AuthGuardService]
         }]
       }]
   },

@@ -33,7 +33,7 @@ export class ProdutosComponent implements OnInit {
 
       let reader = new FileReader();
 
-      reader.onloadend= function () {
+      reader.onloadend = function () {
         element.src = reader.result;
       }
 
@@ -64,10 +64,18 @@ export class ProdutosComponent implements OnInit {
     if(this.novoProduto.id){
 
     } else {
+      let fotos64 = document.querySelectorAll("img");
+
+      for (let x = 0; x < fotos64.length; x++) {
+        
+      }
+
       this.produtoService.insert(this.novoProduto).then(response => {
+        console.log(response);
+        this.produtos.push(this.novoProduto);
         this.novoProduto = new Produto();
       }).catch(err => {
-        throw err;
+        console.error(err);
       });
     }
   }
