@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
-    <form class="col-md-offset-4">
+    <div class="col-md-offset-4">
       <div class="input-group col-md-5">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input type="text" class="form-control " id="login" placeholder="Login">
+        <input type="text" class="form-control " id="login" placeholder="Login" [(ngModel)]="username">
       </div>
       <div class="input-group col-md-5">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input type="password" class="form-control" id="senha" placeholder="Senha">
+        <input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="password">
       </div>
-      <a [routerLink]="['/adm/painel/produtos']" class="btn btn-default">Logar</a>
+      <button class="btn btn-default" (click)="logar()">Logar</button>
+      <!-- <a [routerLink]="['/adm/painel/produtos']" class="btn btn-default">Logar</a> -->
       <!--<button type="submit" class="btn btn-default">Logar</button>-->
-    </form>
+    </div>
   </div>
 </div>

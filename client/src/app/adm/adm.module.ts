@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../guards/auth.guard.service';
 import { ImagemComponent } from './painel/imagem/imagem.component';
 import { OfertaComponent } from './painel/oferta/oferta.component';
 import { ProdutosComponent } from './painel/produtos/produtos.component';
@@ -17,6 +18,7 @@ const admRoutes: Routes = [
       component: LoginComponent
     },{
       path: 'painel',
+      canActivateChild: [AuthGuardService],
       children: [{
           path: '',
           pathMatch: 'full',

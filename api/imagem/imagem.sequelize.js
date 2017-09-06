@@ -28,6 +28,10 @@ let findMain = function(produtoId) {
     });
 }
 
+let insert = function(imagem) {
+    return Imagem.create(imagem);
+}
+
 module.exports = {
     findAll,
     findAllBanners,

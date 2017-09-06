@@ -1,3 +1,5 @@
+import { AuthService } from './guards/auth.service';
+import { AuthGuardService } from './guards/auth.guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +27,7 @@ const appRoutes: Routes = [
     FrontModule,
     AdmModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
