@@ -3,11 +3,8 @@ var router = express.Router();
 var oferta = require('./oferta.sequelize');
 
 router.get('/:qtd', (req, res, next) => {
-    console.log('AQUI É A LISTA!!!!!!!!');    
     oferta.listLast(req.params.qtd)
         .then(list => {
-            console.log('AQUI É A LISTA!!!!!!!!');
-            console.log(list);
             res.status(200).json(list);
         });
 });
@@ -22,7 +19,6 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     oferta.persist(req.body)
         .then(() => {
-            console.log('produto inserido com sucesso');
             res.status(200);
         });
 });

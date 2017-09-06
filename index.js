@@ -5,6 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
+var port = process.env.PORT || 8000;
 
 var produtos = require('./api/produtos/produtos.resource');
 var contato = require('./api/contato/contato.resource');
@@ -39,9 +40,9 @@ Produto.hasOne(Oferta);
 Oferta.belongsTo(Produto);
 Produto.hasMany(Imagem, { as: 'Imagens' });
 
-sequelize.sync().then(() => {
-    app.listen(3000, () => {
-        console.log('Servidor rodando na porta 3000');
+sequelize.sync().then(() => {    
+    app.listen(port, function() {
+        console.log("App is running on port " + port);
     });
 }).catch(err => {
     throw err;
