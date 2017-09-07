@@ -35,6 +35,7 @@ let insert = function(imagem) {
 module.exports = {
     findAll,
     findAllBanners,
-    findMain
+    findMain,
+    insert
 }
 

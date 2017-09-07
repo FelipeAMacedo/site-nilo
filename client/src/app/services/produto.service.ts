@@ -10,8 +10,8 @@ import 'rxjs/add/operator/timeout';
 @Injectable()
 export class ProdutoService {
 
-	// private url = 'http://localhost:3000/api/produtos/';
-	private url = 'https://nilo-materiais-construcao.herokuapp.com/api/produtos/';
+	private url = 'http://localhost:3000/api/produtos/';
+	// private url = 'https://nilo-materiais-construcao.herokuapp.com/api/produtos/';
 
 	constructor(private http: Http) {
 	}
@@ -39,15 +39,13 @@ export class ProdutoService {
 		let options = new RequestOptions({ headers: headers });
 		return this.http.post(this.url, produto, options)
 			.toPromise()
-			.then(response => {
-				response.json();
-			})
+			.then(response => response.json())
 			.catch(error => 'Server error');
 	}
 
 	remove(id) {
 		return this.http.delete(this.url + id).toPromise()
-			.then(response => response.json())
+			.then()
 			.catch(error => console.log(error));
   	}
 }

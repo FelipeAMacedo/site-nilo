@@ -5,7 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 
 var produtos = require('./api/produtos/produtos.resource');
 var contato = require('./api/contato/contato.resource');
@@ -16,10 +16,12 @@ var imagem = require('./api/imagem/imagem.resource');
 app.use(cors());
 
 // Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 
 // Parse application/json
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '200mb'}));
 
 app.use('/api/produtos', produtos);
 app.use('/api/contato', contato);

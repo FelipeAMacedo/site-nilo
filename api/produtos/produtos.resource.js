@@ -25,23 +25,21 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     produtos.persist(req.body)
-        .then(() => {
-            console.log('PRODUTO INSERIDO NO ENDPOINT');
-            res.status(200);
+        .then(produto => {
+            res.send(produto);
         })
         .catch(() => {
-            res.status(400);
+            res.send().status(400);
         });
 });
 
 router.delete('/:id', (req, res, next) => {
     produtos.remove(req.params.id)
         .then(() => {
-            console.log('produto removido com sucesso');
-            res.status(200);
+            res.send().status(200);
         })
         .catch(() => {
-            res.status(400);
+            res.send().status(400);
         });
 });
 

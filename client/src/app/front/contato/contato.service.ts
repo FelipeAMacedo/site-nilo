@@ -9,8 +9,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ContatoService {
 	
-	// private url = 'http://localhost:3000/api/contato/';
-	private url = 'https://nilo-materiais-construcao.herokuapp.com/api/contato/';
+	private url = 'http://localhost:3000/api/contato/';
+	// private url = 'https://nilo-materiais-construcao.herokuapp.com/api/contato/';
 
 	constructor(private http: Http) { }
 

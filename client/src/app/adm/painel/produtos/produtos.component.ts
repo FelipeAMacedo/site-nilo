@@ -1,3 +1,4 @@
+import { ImagemService } from './../../../services/imagem.service';
 import { Produto } from './../../../model/produto';
 import { ProdutoService } from './../../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class ProdutosComponent implements OnInit {
   produtos = [];
   novoProduto: Produto = new Produto();
   
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private imagemService: ImagemService) { }
 
   ngOnInit() {
     this.produtoService.getAll().then(lista => this.produtos = lista);
@@ -23,8 +24,6 @@ export class ProdutosComponent implements OnInit {
   toggleInsert() {
     this.mostrar = !this.mostrar;
   }
-
-  a() {}
 
   addFoto(event, id, element) {
     this.fotos[id] = event.srcElement.files[0];
@@ -64,15 +63,39 @@ export class ProdutosComponent implements OnInit {
     if(this.novoProduto.id){
 
     } else {
-      let fotos64 = document.querySelectorAll("img");
-
-      for (let x = 0; x < fotos64.length; x++) {
-        
-      }
+      let fotos64 = document.querySelectorAll('input[type="file"]');
 
       this.produtoService.insert(this.novoProduto).then(response => {
-        console.log(response);
+        this.novoProduto.id = response.id;
         this.produtos.push(this.novoProduto);
+        
+        for (let x = 0; x < fotos64.length; x++) {
+          let file = (<HTMLInputElement>fotos64[x]);
+          let fileInfo = {
+            nome: '',
+            produtoId: this.novoProduto.id,
+            principal: false,
+            banner: false
+          };
+
+          switch(file.id) {
+            case 'inputFotoa':
+              fileInfo.principal = true;
+              break;
+            case 'inputBanner':
+              fileInfo.banner = true;
+              break;
+          }
+
+          if (file != null && file.files.length > 0) {
+            this.imagemService.insert(file.files[0], fileInfo)
+            .then(response => {
+            }).catch(error => {
+              throw error;
+            });
+          }
+        }
+
         this.novoProduto = new Produto();
       }).catch(err => {
         console.error(err);
