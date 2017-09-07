@@ -23,7 +23,7 @@ export class ProdutoService {
 	}
 
 	getList(categoria: string) {
-		return this.http.get(this.url + categoria).toPromise()
+		return this.http.get(this.url + 'categorias/' + categoria).toPromise()
 			.then(response => response.json())
 			.catch(error => 'Server error');
 	}

@@ -1,7 +1,7 @@
 import { Produto } from './../../model/produto';
 import { ProdutoService } from './../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -13,22 +13,36 @@ import 'rxjs/add/operator/switchMap';
 
 export class ProdutosComponent implements OnInit {
 
-  produtos;
+  produtos = [];
   categoria: string;
 
-  constructor(private produtoService: ProdutoService, private route: ActivatedRoute) { }
+  constructor(private produtoService: ProdutoService, private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe(params => this.categoria = params['categoria']);
+    if (this.categoria != "" && this.categoria != null) {
+      this.produtoService.getList(this.categoria)
+        .then(lista => this.produtos = lista);
+    } else {
+      this.produtoService.getAll()
+        .then(lista => this.produtos = lista);
+    }
+  }
 
   ngOnInit() {
-    if(this.route.params['categoria']) {
-      this.route.params
-      // (+) converts string 'id' to a number
-      .switchMap((params: Params) => this.produtoService.getList(params['categoria']))
-      .subscribe((lista) => this.produtos = lista);
-      // this.categoria = 'pedra';
-      // this.produtoService.getList(this.categoria).subscribe(lista => this.produtos = lista);
-    } else {
-      this.produtoService.getAll().then(lista => this.produtos = lista);
-    }
+    this.router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd) {
+        let antigaCategoria = this.categoria;
+
+        this.route.params.subscribe(params => this.categoria = params['categoria']);
+
+        if (this.categoria != "" && this.categoria != null) {
+          this.produtoService.getList(this.categoria)
+            .then(lista => this.produtos = lista);
+        } else {
+          this.produtoService.getAll()
+            .then(lista => this.produtos = lista);
+        }
+      }
+    });
   }
 
   changeToList(event) {

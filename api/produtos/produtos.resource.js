@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var produtos = require('./produtos.sequelize');
 
-// router.get('/:categoria', (req, res, next) => {
-//     produtos.listAllByCategory(req.params.categoria)
-//         .then(list => {
-//             res.status(200).json(list);
-//         });
-// });
+router.get('/categorias/:categoria', (req, res, next) => {
+    produtos.listAllByCategory(req.params.categoria)
+        .then(list => {
+            res.status(200).json(list);
+        });
+});
 
 router.get('/:id', (req, res, next) => {
     produtos.findByID(req.params.id)

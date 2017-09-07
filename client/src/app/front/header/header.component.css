@@ -145,18 +145,32 @@ p.top{
 #myNavbar .container {
     padding: 0;
 }
- 
+
 .dropdown-menu {
     margin: 0;
     border: 0;
     border-radius: 0;
-    width: 100%;
-    padding: 0;
+    /* width: 120px !important; */
+    padding: 0 !important;
 }
 
+
+@media (min-width: 768px) {
+    .dropdown-toggle {
+        width: 120px !important;
+    }
+}
+
+/* TODO
 .dropdown-menu a {
-    background-color: black;
+    background-color: #004593;
     padding-left: 3.5em !important;
+}
+*/
+
+.dropdown-menu a {
+    width: 100% !important;
+    background-color: #004593;    
 }
 
 @media (min-width: 768px) {
@@ -178,11 +192,11 @@ p.top{
     #myNavbar a:nth-last-child(-n+2) {
         border-right: none;
     }
-
+/*  TODO
     .dropdown-menu {
         width: 81.08%;
         left: 9.46%; 
-    }
+    } */
 }
 
 

@@ -1,23 +1,26 @@
-<!--Product Grid View-->
 <div class="container">
-    <!--<div class="well well-sm">-->
-        <strong>Título</strong>
+    <div *ngIf="produtos.length > 0">
+        <!-- <strong>Título</strong> -->
+        <br />
         <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm" (click)="changeToList($event)"><span class="glyphicon glyphicon-th-list">
             </span>Lista</a> <a href="#" id="grid" class="btn btn-default btn-sm" (click)="changeToGrid($event)"><span
                 class="glyphicon glyphicon-th"></span>Grade</a>
         </div>
-    <!--</div>-->
-    <div id="products" class="row list-group">
-        <div class="item col-xs-12 col-sm-6 col-md-4" *ngFor='let produto of produtos'>
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/aaa/000" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        {{ produto.nome }}</h4>
-                    <p class="group inner list-group-item-text">{{ produto.descricao }}</p>
+        <div id="products" class="row list-group">
+            <div class="item col-xs-12 col-sm-6 col-md-4" *ngFor='let produto of produtos'>
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="http://placehold.it/400x250/aaa/000" alt="" />
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                            {{ produto.nome }}</h4>
+                        <p class="group inner list-group-item-text">{{ produto.descricao }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="produtos.length < 1">
+        <h2>Nenhum produto encontrado</h2>
     </div>
 </div>

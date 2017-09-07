@@ -67,22 +67,22 @@
 				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'cal']">CAL</a> -->
 				<!-- <a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferragens']">FERRAGENS</a>
 				<a href="#" class="col-md-1" [routerLink]="['/produtos', 'ferramentas']">FERRAMENTAS</a> -->
-				<!-- <div class="col-md-1 dropdown"> -->
+				<div class="col-md-1 dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ Categorias <span class="caret"></span></a> 
 					<ul class="dropdown-menu">
-						<li *ngFor="let pMais of paginasMais"><a href="#">{{ pMais.nome }}</a></li>
+						<li *ngFor="let pMais of paginasMais"><a href="#" [routerLink]="['/produtos', pMais.link]">{{ pMais.nome }}</a></li>
 						 <!-- <li><a href="#">Another action</a></li>
 						<li><a href="#">Something else here</a></li> -->
 						<!-- <li role="separator" class="divider"></li> -->
 						<!-- <li><a href="#">Separated link</a></li>  -->
 					</ul> 
-				<!-- </div> -->
+				</div>
 			</div>
 			<!-- Div usada como teste com o dropdown
 				<div class="teste" style="position: fixed; right: 0; bottom: 0; height: 200px; width: 200px; background-color: red; display: none;">
 
 			</div> -->
-		</div> 
+		</div>
  	</nav>
 </nav>
 
