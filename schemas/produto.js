@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         marca: DataTypes.STRING,
         preco: DataTypes.DOUBLE,
         descricao: DataTypes.TEXT,
-        mostrar: { type: DataTypes.BOOLEAN, defaultValue: true}
+        mostrar: { type: DataTypes.BOOLEAN, defaultValue: false}
     }, {
         tableName: 'tb_produtos'
     });

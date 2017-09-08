@@ -11,8 +11,20 @@ export class ImagemService {
 
   findMain(produtoId) {
     return this.http.get(this.url + produtoId + '/principal').toPromise()
-    .then(response => response.json())
-    .catch(error => 'Server error');
+      .then(response => response.json())
+      .catch(error => 'Server error');
+  }
+
+  findByProdutoId(produtoId) {
+    return this.http.get(this.url + 'produto/' + produtoId).toPromise()
+      .then(response => response.json())
+      .catch(error => console.log(error));
+  }
+
+  getImage(filename) {
+    return this.http.get(this.url + 'image/' + filename).toPromise()
+      .then(response => response.text())
+      .catch(error => console.log(error));
   }
 
   insert(file, fileInfo) {
@@ -25,13 +37,13 @@ export class ImagemService {
 
 
       xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-              if (xhr.status == 200) {
-                resolve('ss');
-              } else {
-                reject(xhr.response);
-              }
-          }
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              resolve('ss');
+            } else {
+              reject(xhr.response);
+            }
+        }
       }
       xhr.open("POST", this.url, true);
       xhr.send(formData);

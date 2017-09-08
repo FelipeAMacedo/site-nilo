@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosComponent implements OnInit {
 
-  mostrar = false;
+  mostrar = true;
   fotos = {};
   produtos = [];
   novoProduto: Produto = new Produto();
@@ -56,7 +56,37 @@ export class ProdutosComponent implements OnInit {
 
   editarProduto(produto) {
     this.novoProduto = produto;
-    this.mostrar = true;
+    console.log('ENTROU NO EDITAR');
+    console.log('PRODUTO ID: ' + produto.id);
+    this.imagemService.findByProdutoId(produto.id).then(response => {
+
+      // this.mostrar = true;
+      // console.log(response);
+      console.log('PROCUROU A IMAGEM');
+      let x = 2;
+      console.log(response);
+      response.forEach(image => {
+        console.log('ENTROU NO FOR EACH');
+        console.log(image.produtoId);
+        let selector = "";
+        if (image.banner) {
+          selector = "#imgBanner";
+        } else if (image.principal) {
+          selector = "#imgFoto1";
+        } else {
+          selector = "#imgFoto" + x;
+        }
+
+        this.imagemService.getImage(image.nome).then(resBase64 => {
+          let img = (<HTMLImageElement>document.querySelector(selector));
+          img.src = "data:image/png;base64, "+ resBase64; 
+        });
+      });
+      
+    }).catch(error => {
+      console.log(error);
+      throw "As fotos do produto não foram carregadas";
+    });
   }
 
   inserirProduto() {

@@ -3,6 +3,8 @@ module.exports = (sequelize, DataTypes) => {
         nome: DataTypes.STRING,
         principal: DataTypes.BOOLEAN,
         banner: DataTypes.BOOLEAN,
+        tipo: DataTypes.STRING,
+        encoding: DataTypes.STRING
     }, {
         tableName: 'tb_imagens'
     });

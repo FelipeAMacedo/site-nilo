@@ -3,10 +3,14 @@ var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.
 
 const Imagem = sequelize.import("../../schemas/imagem");
 
-let findAll = function(produtoId) {
+let findById = function(id) {
+    return Imagem.findById(id);
+}
+
+let findByProdutoId = function(produtoId) {
     return Imagem.findAll({
         where: {
-            ProdutoId: produtoId
+            produtoId: produtoId
         }
     });
 }
@@ -33,7 +37,8 @@ let insert = function(imagem) {
 }
 
 module.exports = {
-    findAll,
+    findById,
+    findByProdutoId,
     findAllBanners,
     findMain,
     insert

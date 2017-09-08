@@ -30,8 +30,9 @@ app.use('/api/imagem', imagem);
 app.use('/api/produtos/pedra/', produto)
 
 app.get('/', (req, res, next) => {
-    app.use(express.static(path.join(__dirname, 'client/dist')));
-    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+    // app.use(express.static(path.join(__dirname, 'client/dist')));
+    // res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+    app.use(express.static(__dirname + 'images/5c8247f0d9cd7f91251380f4bc26b065.gif'));
 });
 
 const Produto = sequelize.import(__dirname + "/schemas/produto");
@@ -40,7 +41,9 @@ const Imagem = sequelize.import(__dirname + "/schemas/imagem");
 
 Produto.hasOne(Oferta);
 Oferta.belongsTo(Produto);
-Produto.hasMany(Imagem, { as: 'Imagens' });
+// Produto.hasMany(Imagem, { as: 'Imagens', foreignKey: produtoId });
+// Produto.hasMany(Imagem, { as: "Imagens", foreignKey: 'produtoId'});
+Imagem.belongsTo(Produto, { foreignKey: { name: 'produtoId', allowNull: false }, onDelete: 'CASCADE'});
 
 sequelize.sync().then(() => {    
     app.listen(port, function() {
