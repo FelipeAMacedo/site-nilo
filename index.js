@@ -3,9 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
 var port = process.env.PORT || 3000;
+var models = require('./models');
 
 var produtos = require('./api/produtos/produtos.resource');
 var contato = require('./api/contato/contato.resource');
@@ -32,20 +31,21 @@ app.use('/api/produtos/pedra/', produto)
 app.get('/', (req, res, next) => {
     // app.use(express.static(path.join(__dirname, 'client/dist')));
     // res.sendFile(path.join(__dirname, 'client/dist/index.html'));
-    app.use(express.static(__dirname + 'images/5c8247f0d9cd7f91251380f4bc26b065.gif'));
 });
 
-const Produto = sequelize.import(__dirname + "/schemas/produto");
-const Oferta = sequelize.import(__dirname + "/schemas/oferta");
-const Imagem = sequelize.import(__dirname + "/schemas/imagem");
+// const Produto = sequelize.import(__dirname + "/models/produto");
+// const Oferta = sequelize.import(__dirname + "/models/oferta");
+// const Imagem = sequelize.import(__dirname + "/models/imagem");
 
-Produto.hasOne(Oferta);
-Oferta.belongsTo(Produto);
+// Produto.hasOne(Oferta);
+// Oferta.belongsTo(Produto);
 // Produto.hasMany(Imagem, { as: 'Imagens', foreignKey: produtoId });
 // Produto.hasMany(Imagem, { as: "Imagens", foreignKey: 'produtoId'});
-Imagem.belongsTo(Produto, { foreignKey: { name: 'produtoId', allowNull: false }, onDelete: 'CASCADE'});
+// Imagem.belongsTo(Produto, { foreignKey: { name: 'produtoId', allowNull: false }, onDelete: 'CASCADE'});
 
-sequelize.sync().then(() => {    
+models.sequelize.sync({
+    force: false
+}).then(() => {    
     app.listen(port, function() {
         console.log("App is running on port " + port);
     });

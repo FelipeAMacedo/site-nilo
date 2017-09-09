@@ -1,89 +1,106 @@
-<div class="container">
+<div class="container-fluid">
   <br />
-  <table>
-    <thead>
-      <th>Nome</th>
-      <th>Categoria</th>
-      <th>Marca</th>
-      <th>Preço</th>
-      <th>Descrição</th>
-      <th>Mostrar</th>
-      <th>Ações</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let produto of produtos">
-        <td>{{ produto.nome }}</td>
-        <td>{{ produto.categoria }}</td>
-        <td>{{ produto.marca }}</td>
-        <td>{{ produto.preco }}</td>
-        <td>{{ produto.descricao }}</td>
-        <td>{{ produto.mostrar }}</td>
-        <td>
-          <button (click)="editarProduto(produto)">Editar</button>
-          <button (click)="deletar(produto.id)">Apagar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col-xs-offset-4">
-      <button (click)="toggleInsert()">Inserir novo</button>
+  <div class="col-md-7">
+    <table class="col-md-12">
+      <thead>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Marca</th>
+        <th>Preço</th>
+        <!-- <th>Descrição</th>
+        <th>Mostrar</th>
+        <th>Ações</th> -->
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos" (click)="selecionar(produto)">
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.categoria }}</td>
+          <td>{{ produto.marca }}</td>
+          <td>{{ produto.preco }}</td>
+          <!-- <td>{{ produto.descricao }}</td> -->
+          <!-- <td>{{ produto.mostrar }}</td> -->
+          <!-- <td>
+            <button (click)="editarProduto(produto)">Editar</button>
+            <button (click)="deletar(produto.id)">Apagar</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-xs-offset-4">
+        <!-- <button (click)="toggleInsert()">Inserir novo</button> -->
+        <button (click)="limparFormulario()">Inserir novo</button>
+      </div>
     </div>
   </div>
-  <form *ngIf="mostrar" class="col-md-6">
-      <h3>Informações do produto</h3>
-    <div class="form-group">
-      <label for="nomeProduto">Nome</label>
-      <input type="text" class="form-control" id="nomeProduto" [(ngModel)]="novoProduto.nome" name="nomeProduto">
-    </div>
-    <div class="form-group">
-      <label for="categoriaSelect">Categoria</label>
-      <select class="form-control" id="categoriaSelect" [(ngModel)]="novoProduto.categoria" name="categoriaProduto">
-        <option>pedra</option>
-        <option>blocos</option>
-        <option>cimento</option>
-        <option>telhas</option>
-        <option>areia</option>
-        <option>tijolo</option>
-        <option>cal</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="marcaProduto">Marca</label>
-      <input type="text" class="form-control" id="marcaProduto" [(ngModel)]="novoProduto.marca" name="marcaProduto">
-    </div>
-    <div class="form-group">
-      <label for="precoProduto">Preco</label>
-      <input type="text" class="form-control" id="precoProduto" [(ngModel)]="novoProduto.preco" name="precoProduto">
-    </div>
-    <div class="form-group">
-      <label for="descricaoProduto">Descrição</label>
-      <input type="text" class="form-control" id="descricaoProduto" [(ngModel)]="novoProduto.descricao" name="descricaoProduto">
-    </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" id="mostrarProduto" [(ngModel)]="novoProduto.mostrar" name="mostrarProduto">
-        Mostrar no site
-      </label>
-    </div>
-    <h3>Fotos</h3>
-    <div class="row">
-      <label for="inputFotoa" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto1" #imgFoto1 class="imgThumb"/><button #close1 (click)="apagarImagem(close1, 'foto1', inputFoto1)" class="deleteImage">x</button></label>
-      <input type="file" id="inputFotoa" class="no-display" (change)="addFoto($event, 'foto1', imgFoto1)" #inputFoto1>
-      <label for="inputFotob" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto2" #imgFoto2 class="imgThumb"/><button #close2 (click)="apagarImagem(close2, 'foto2', inputFoto2)" class="deleteImage">x</button></label>
-      <input type="file" id="inputFotob" class="no-display" (change)="addFoto($event, 'foto2', imgFoto2)" #inputFoto2>
-      <label for="inputFotoc" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto3" #imgFoto3 class="imgThumb"/><button #close3 (click)="apagarImagem(close3, 'foto3', inputFoto3)" class="deleteImage">x</button></label>
-      <input type="file" id="inputFotoc" class="no-display" (change)="addFoto($event, 'foto3', imgFoto3)" #inputFoto3>
-      <label for="inputFotod" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto4" #imgFoto4 class="imgThumb"/><button #close4 (click)="apagarImagem(close4, 'foto4', inputFoto4)" class="deleteImage">x</button></label>
-      <input type="file" id="inputFotod" class="no-display" (change)="addFoto($event, 'foto4', imgFoto4)" #inputFoto4>
-    </div>
-    <h3>Banner</h3>
-    <div class="row">
-        <label for="inputBanner" class="form-group col-xs-12 fotoThumb fotoBanner"><img src="" id="imgBanner" #imgBanner class="imgThumb"/><button #close5 (click)="apagarImagem(close5, 'banner', inputBanner)" class="deleteImage">x</button></label>
-        <input type="file" id="inputBanner" class="no-display" (change)="addFoto($event, 'banner', imgBanner)" #inputBanner>
-    </div>
-    <button type="button" class="btn btn-default" (click)="inserirProduto()">Salvar</button>
-  </form>
+  <div class="col-md-5">
+    <form *ngIf="mostrar" class="col-md-6" #produtoForm="ngForm">
+        <h3>Informações do produto</h3>
+      <div class="form-group">
+        <label for="nomeProduto">Nome</label>
+        <input type="text" class="form-control" id="nomeProduto" [(ngModel)]="novoProduto.nome" name="nomeProduto">
+      </div>
+      <div class="form-group">
+        <label for="categoriaSelect">Categoria</label>
+        <select class="form-control" id="categoriaSelect" [(ngModel)]="novoProduto.categoria" name="categoriaProduto">
+          <option>pedra</option>
+          <option>blocos</option>
+          <option>cimento</option>
+          <option>telhas</option>
+          <option>areia</option>
+          <option>tijolo</option>
+          <option>cal</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="marcaProduto">Marca</label>
+        <input type="text" class="form-control" id="marcaProduto" [(ngModel)]="novoProduto.marca" name="marcaProduto">
+      </div>
+      <div class="form-group">
+        <label for="precoProduto">Preco</label>
+        <input type="text" class="form-control" id="precoProduto" [(ngModel)]="novoProduto.preco" name="precoProduto">
+      </div>
+      <div class="form-group">
+        <label for="descricaoProduto">Descrição</label>
+        <input type="text" class="form-control" id="descricaoProduto" [(ngModel)]="novoProduto.descricao" name="descricaoProduto">
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="mostrarProduto" [(ngModel)]="novoProduto.mostrar" name="mostrarProduto" checked>
+          Mostrar no site
+        </label>
+      </div>
+      <h3>Fotos</h3>
+      <div class="row">
+
+        <label for="inputFotoa" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto1" #imgFoto1 class="form-control imgThumb" alt=""/><button #close1 (click)="apagarImagem(close1, 'foto1', inputFoto1)" class="deleteImage">x</button></label>
+        <input type="file" id="inputFotoa" class="form-control no-display" (change)="addFoto($event, 'foto1', imgFoto1)" #inputFoto1>
+        
+        <label for="inputFotob" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto2" #imgFoto2 class="form-control imgThumb" alt=""/><button #close2 (click)="apagarImagem(close2, 'foto2', inputFoto2)" class="deleteImage">x</button></label>
+        <input type="file" id="inputFotob" class="form-control no-display" (change)="addFoto($event, 'foto2', imgFoto2)" #inputFoto2>
+        
+        <label for="inputFotoc" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto3" #imgFoto3 class="form-control imgThumb" alt=""/><button #close3 (click)="apagarImagem(close3, 'foto3', inputFoto3)" class="deleteImage">x</button></label>
+        <input type="file" id="inputFotoc" class="form-control no-display" (change)="addFoto($event, 'foto3', imgFoto3)" #inputFoto3>
+        
+        <label for="inputFotod" class="form-group col-xs-2 fotoThumb"><img src="" id="imgFoto4" #imgFoto4 class="form-control imgThumb" alt=""/><button #close4 (click)="apagarImagem(close4, 'foto4', inputFoto4)" class="deleteImage">x</button></label>
+        <input type="file" id="inputFotod" class="form-control no-display" (change)="addFoto($event, 'foto4', imgFoto4)" #inputFoto4>
+      </div>
+      <h3>Banner</h3>
+      <div class="row">
+          <label for="inputBanner" class="form-group col-xs-12 fotoThumb fotoBanner"><img src="" id="imgBanner" #imgBanner class="form-control imgThumb" alt=""/><button #close5 (click)="apagarImagem(close5, 'banner', inputBanner)" class="deleteImage">x</button></label>
+          <input type="file" id="inputBanner" class="form-control no-display" (change)="addFoto($event, 'banner', imgBanner)" #inputBanner>
+      </div>
+      <button type="button" class="btn btn-success" (click)="inserirProduto()" style="float: right;">Salvar</button>
+      <button type="button" class="btn btn-danger" (click)="deletar(novoProduto.id)">Apagar</button>      
+    </form>
+  </div>
+  <div class="msg">
+    <div class="insertProdSuccess">Produto inserido com sucesso</div>
+    <div class="removeProdSuccess">Produto removido com sucesso</div>
+    <div class="insertProdFail">Produto não pode ser inserido</div>
+    <div class="insertProdFail">Produto não pode ser removido</div>
+  </div>
+
 </div>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

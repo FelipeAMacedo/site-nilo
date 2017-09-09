@@ -1,7 +1,7 @@
 import { ImagemService } from './../../../services/imagem.service';
 import { Produto } from './../../../model/produto';
 import { ProdutoService } from './../../../services/produto.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-produtos',
@@ -11,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class ProdutosComponent implements OnInit {
 
   mostrar = true;
-  fotos = {};
+  // fotos = {};
   produtos = [];
   novoProduto: Produto = new Produto();
-  
+
+  @ViewChild('produtoForm') form;
+
   constructor(private produtoService: ProdutoService, private imagemService: ImagemService) { }
 
   ngOnInit() {
@@ -26,9 +28,9 @@ export class ProdutosComponent implements OnInit {
   }
 
   addFoto(event, id, element) {
-    this.fotos[id] = event.srcElement.files[0];
-    
-    if(this.fotos[id] || this.fotos[id] != null) {
+    // this.fotos[id] = event.srcElement.files[0];
+
+    // if (this.fotos[id] || this.fotos[id] != null) {
 
       let reader = new FileReader();
 
@@ -36,100 +38,160 @@ export class ProdutosComponent implements OnInit {
         element.src = reader.result;
       }
 
-      reader.readAsDataURL(this.fotos[id]);
-    }
+      reader.readAsDataURL(event.srcElement.files[0]);
+    // }
   }
 
   apagarImagem(element, id, inputFoto) {
-    this.fotos[id] = "";
+    // this.fotos[id] = ''; 
     inputFoto.value = null;
-    element.parentElement.querySelector("img").src = "";
+    element.parentElement.querySelector('img').src = '';
   }
 
   deletar(id) {
     this.produtoService.remove(id).then(response => {
-      this.produtoService.getAll().then(lista => this.produtos = lista);  
+      this.produtoService.getAll().then(lista => this.produtos = lista);
+
+      this.limparFormulario();
+
     }).catch(err => {
-      throw "O objeto não foi removido";
+      throw new Error('O objeto não foi removido');
     });
   }
 
   editarProduto(produto) {
-    this.novoProduto = produto;
-    console.log('ENTROU NO EDITAR');
-    console.log('PRODUTO ID: ' + produto.id);
-    this.imagemService.findByProdutoId(produto.id).then(response => {
+    this.limparFormulario();
 
-      // this.mostrar = true;
-      // console.log(response);
-      console.log('PROCUROU A IMAGEM');
+    this.novoProduto = produto;
+    this.imagemService.findByProdutoId(produto.id).then(response => {
       let x = 2;
-      console.log(response);
       response.forEach(image => {
-        console.log('ENTROU NO FOR EACH');
-        console.log(image.produtoId);
-        let selector = "";
-        if (image.banner) {
-          selector = "#imgBanner";
-        } else if (image.principal) {
-          selector = "#imgFoto1";
+        let selector = '#img';
+        if (image.posicao == 20) {
+          selector += 'Banner';
+        } else if (image.posicao == 1) {
+          selector += 'Foto1';
         } else {
-          selector = "#imgFoto" + x;
+          selector += 'Foto' + x;
+          x++;
         }
 
         this.imagemService.getImage(image.nome).then(resBase64 => {
           let img = (<HTMLImageElement>document.querySelector(selector));
-          img.src = "data:image/png;base64, "+ resBase64; 
+          img.src = 'data:image/png;base64, ' + resBase64;
         });
       });
-      
     }).catch(error => {
-      console.log(error);
-      throw "As fotos do produto não foram carregadas";
+      throw new Error('As fotos do produto não foram carregadas');
     });
   }
 
   inserirProduto() {
-    if(this.novoProduto.id){
+    let fotos64 = document.querySelectorAll('input[type="file"]');
 
-    } else {
-      let fotos64 = document.querySelectorAll('input[type="file"]');
+    this.produtoService.insert(this.novoProduto).then(response => {
+      // this.novoProduto.id = response.id;
+      // this.produtos.push(this.novoProduto);
 
-      this.produtoService.insert(this.novoProduto).then(response => {
-        this.novoProduto.id = response.id;
-        this.produtos.push(this.novoProduto);
-        
-        for (let x = 0; x < fotos64.length; x++) {
-          let file = (<HTMLInputElement>fotos64[x]);
-          let fileInfo = {
-            nome: '',
-            produtoId: this.novoProduto.id,
-            principal: false,
-            banner: false
-          };
+      for (let x = 0; x < fotos64.length; x++) {
+        let file = (<HTMLInputElement>fotos64[x]);
+        let fileInfo = {
+          nome: '',
+          produtoId: this.novoProduto.id,
+          posicao: 0
+        };
 
-          switch(file.id) {
-            case 'inputFotoa':
-              fileInfo.principal = true;
-              break;
-            case 'inputBanner':
-              fileInfo.banner = true;
-              break;
-          }
-
-          if (file != null && file.files.length > 0) {
-            this.imagemService.insert(file.files[0], fileInfo)
-            .then(response => {
-            }).catch(error => {
-              throw error;
-            });
-          }
+        switch (file.id) {
+          case 'inputFotoa':
+            fileInfo.posicao = 1;
+            break;
+          case 'inputBanner':
+            fileInfo.posicao = 20;
+            break;
+          default:
+            fileInfo.posicao = x + 2;
+            break;
         }
 
-        this.novoProduto = new Produto();
-      }).catch(err => {
-        console.error(err);
+        if (file != null && file.files.length > 0) {
+          this.imagemService.insert(file.files[0], fileInfo)
+          .catch(error => {
+            throw error;
+          });
+        }
+
+        this.limparFormulario();
+
+        this.produtoService.getAll()
+        .then(lista => {
+          this.produtos = lista;
+        })
+        .catch(listError => {
+          throw listError;
+        });
+
+      }
+    }).catch(err => {
+      throw new Error(err);
+    });
+  }
+
+  limparFormulario() {
+    let inputText = document.querySelectorAll('input[type="text"]');
+    let inputFile = document.querySelectorAll('input[type="file"]');
+    let inputCheckBox = document.getElementById('mostrarProduto');
+
+    let imgs = document.querySelectorAll('img');
+
+    // this.fotos = {};
+    this.novoProduto = new Produto();
+
+    // for (let x = 0; x < inputText.length; x++) {
+    //   let input = (<HTMLInputElement>inputText[x])
+    //   input.value = '';
+    // };
+
+    for (let x = 0; x < inputFile.length; x++) {
+      let input = (<HTMLInputElement>inputFile[x]);
+      input.value = '';
+      input.files[0] = null;
+    };
+
+    for (let x = 0; x < imgs.length; x++) {
+      let input = (<HTMLImageElement>imgs[x]);
+      input.src = '';
+    };
+
+    this.form.reset();
+
+    inputCheckBox.click();
+  }
+
+  selecionar(produto) {
+
+    this.limparFormulario();
+
+    Object.assign(this.novoProduto, produto);
+    this.imagemService.findByProdutoId(produto.id).then(response => {
+      let x = 2;
+      response.forEach(image => {
+        let selector = '#img';
+        if (image.posicao == 20) {
+          selector += 'Banner';
+        } else if (image.posicao == 1) {
+          selector += 'Foto1';
+        } else {
+          selector += 'Foto' + x;
+          x++;
+        }
+
+        this.imagemService.getImage(image.nome).then(resBase64 => {
+          let img = (<HTMLImageElement>document.querySelector(selector));
+          img.src = 'data:image/png;base64, ' + resBase64;
+        });
       });
-    }
+    }).catch(error => {
+      throw new Error('As fotos do produto não foram carregadas');
+    });
   }
 }

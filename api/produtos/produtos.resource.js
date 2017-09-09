@@ -10,7 +10,7 @@ router.get('/categorias/:categoria', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    produtos.findByID(req.params.id)
+    produtos.findById(req.params.id)
         .then(list => {
             res.status(200).json(list);
         });
@@ -24,13 +24,23 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    produtos.persist(req.body)
-        .then(produto => {
-            res.send(produto);
-        })
-        .catch(() => {
-            res.send().status(400);
-        });
+    if (req.body.id) {
+        produtos.update(req.body)
+            .then(produto => {
+                res.send(produto);
+            })
+            .catch(() => {
+                res.sendStatus(400)
+            })
+    } else {
+        produtos.persist(req.body)
+            .then(produto => {
+                res.send(produto);
+            })
+            .catch(() => {
+                res.sendStatus(400);
+            });
+    }
 });
 
 router.delete('/:id', (req, res, next) => {

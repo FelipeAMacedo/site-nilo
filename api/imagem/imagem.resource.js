@@ -44,9 +44,6 @@ router.post('/', imagesFolder.single('selectFile'), (req, res, next) => {
     fileInfo.tipo = req.file.mimetype;
     fileInfo.encoding = req.file.encoding;
 
-
-    console.log('PRODUTO ID: ');
-    console.log(fileInfo.produtoId);
     // let fileInfo = {
     //     nome: "",
     //     principal: 1,
@@ -64,14 +61,7 @@ router.post('/', imagesFolder.single('selectFile'), (req, res, next) => {
 
     imagem.insert(fileInfo)
         .then(arquivo => {
-
-            imagem.findById(1).then(resultado => {
-
-                console.log('ESSE É O RESULTADO DA BUSCA; ');
-                console.log(resultado);
-                res.status(200).json(resultado);
-            })
-
+            res.sendStatus(200);
         })
         .catch(error => {
             res.status(400).json(error);

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define("Produto", {
+    var Produto = sequelize.define("Produto", {
         nome: DataTypes.STRING,
         categoria: DataTypes.STRING,
         marca: DataTypes.STRING,
@@ -9,4 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         tableName: 'tb_produtos'
     });
+
+    Produto.associate = function (models) {
+        Produto.hasMany(models.Imagem, {
+            foreignKey: {
+                name: 'produtoId',
+                allowNull: false
+            }
+        });
+    }
+
+    return Produto;
 }

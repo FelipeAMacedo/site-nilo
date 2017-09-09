@@ -3,7 +3,6 @@
 }
 
 .fotoThumb {
-    border: 1px dotted black;
     margin-right: 10px;
     height: 80px;
     padding: 0;
@@ -18,6 +17,7 @@
     max-height: 100%;
     height: 100%;
     margin-top: auto;
+    padding: 0;
 }
 
 .deleteImage {
@@ -31,6 +31,10 @@
     height: 300px;
 }
 
+.msg {
+    display: none;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -39,4 +43,17 @@ table, th, td {
     border: 1px solid black;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+th {
+    text-align: center;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+form {
+    width: 100%;
 }

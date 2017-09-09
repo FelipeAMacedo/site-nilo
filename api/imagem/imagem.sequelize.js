@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
 
-const Imagem = sequelize.import("../../schemas/imagem");
+const Imagem = require("../../models").Imagem;
 
 let findById = function(id) {
     return Imagem.findById(id);
@@ -18,7 +18,7 @@ let findByProdutoId = function(produtoId) {
 let findAllBanners = function() {
     return Imagem.findAll({
         where: {
-            banner: 1
+            posicao: 20
         }
     });
 }
@@ -26,8 +26,8 @@ let findAllBanners = function() {
 let findMain = function(produtoId) {
     return Imagem.findOne({
         where: {
-            ProdutoId: produtoId,
-            principal: 1
+            produtoId: produtoId,
+            posicao: 1
         }
     });
 }

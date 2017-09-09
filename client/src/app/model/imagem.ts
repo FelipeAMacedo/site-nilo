@@ -1,8 +1,7 @@
 export class Imagem {
     nome: string;
-    principal: boolean;
-    banner: boolean;
+    posicao: number;
     produtoId: number;
 
-    constructor(){};
+    constructor () {};
 }

@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('mysql://nilodb:lipes2jojo@nilodb.mysql.dbaas.com.br/nilodb');
 
-const Oferta = sequelize.import("../../schemas/oferta");
-const Produto = sequelize.import("../../schemas/produto");
+const Oferta = sequelize.import("../../models/oferta");
+const Produto = require("../../models").Produto;
 
 let listAll = function() {
     return Oferta.findAll();
@@ -16,7 +16,7 @@ let listLast = function(limitNum) {
     });
 }
 
-let findByID = function(id) {
+let findById = function(id) {
     return Produto.findById(id);
 }
 
@@ -31,7 +31,7 @@ let remove = function(id) {
 module.exports = {
     listAll,
     listLast,
-    findByID,
+    findById,
     persist,
     remove
 }
