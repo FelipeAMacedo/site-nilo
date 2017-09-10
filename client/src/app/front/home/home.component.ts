@@ -21,11 +21,13 @@ export class HomeComponent implements OnInit {
     this.ofertaService.getLast(4).subscribe(lista => {
       lista.forEach(oferta => {
         this.imagemService.findMain(oferta.ProdutoId).then(imagem => {
-          this.produtoService.get(oferta.ProdutoId).then(result => {
+          this.produtoService.get(oferta.ProdutoId)
+          .subscribe(result => {
             result.imagem = imagem.path;
             result.precoOferta = oferta.preco;
             this.produtos.push(result);
-          }).catch(error => {
+          },
+          error => {
             throw error;
           });
         });

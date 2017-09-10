@@ -9,6 +9,13 @@ router.get('/categorias/:categoria', (req, res, next) => {
         });
 });
 
+router.get('/categorias/:categoria/mostrar', (req, res, next) => {
+    produtos.listAllByCategoryCanShow(req.params.categoria)
+        .then(list => {
+            res.status(200).json(list);
+        });
+});
+
 router.get('/:id', (req, res, next) => {
     produtos.findById(req.params.id)
         .then(list => {

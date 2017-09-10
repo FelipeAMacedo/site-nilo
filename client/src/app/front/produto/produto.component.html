@@ -1,20 +1,19 @@
 <div class="content">
-	<div class="container">
+	<div class="container" *ngIf="!mensagem">
 		<!-- <h1>{{ produto.nome }}</h1>
 		<p>{{ produto.categoria }}</p>
 		<p>{{ produto.marca }}</p> -->
-		<h1>Pedra de brita</h1>
-		<p>{{ produto.categoria }}</p>
-		<p>{{ produto.marca }}</p>
+		<h1>{{ produto.nome }}</h1>
 		<div class="row">
-			<div class="col-md-7">
-				 <img class="img-responsive" src="http://placehold.it/400x250/aaa/000" width="100%" alt=""/> 
+			<div class="col-md-5">
+				 <img id="imagem" class="img-responsive" src="" width="100%" alt=""/> 
 			</div>
-			<div class="col-md-5 info">
-				<p><b>Marca:</b> marca</p>
-				<p><b>Descrição:</b> descrição</p>
-				<p><b>Preço:</b> preço</p>				
+			<div class="col-md-7 info">
+				<p><b>Marca:</b> {{ produto.marca }}</p>
+				<p><b>Descrição:</b> {{ produto.descricao }}</p>
+				<p><b>Preço:</b> R$: {{ produto.preco }}</p>
 			</div>
-		</div>
+		</div>		
 	</div>
+	<h1 *ngIf="mensagem">Produto não encontrado</h1>
 </div>

@@ -21,11 +21,11 @@ const frontRoutes: Routes = [
         {path: 'sobre-nos', component: SobreComponent},
         {path: 'contato', component: ContatoComponent},
         {path: 'produtos/:categoria', component: ProdutosComponent},
-        // {path: ':id', component: ProdutoComponent},
+        {path: 'produto/:id', component: ProdutoComponent},
         {path: 'produtos', component: ProdutosComponent},
         {path: '', component: HomeComponent}
   ]}
-]; 
+];
 
 @NgModule({
   imports: [

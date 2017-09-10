@@ -18,8 +18,8 @@ export class ProdutosComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => this.categoria = params['categoria']);
-    if (this.categoria != "" && this.categoria != null) {
-      this.produtoService.getList(this.categoria)
+    if (this.categoria != '' && this.categoria != null) {
+      this.produtoService.getListCanShow(this.categoria)
         .then(lista => this.produtos = lista);
     } else {
       this.produtoService.getAll()
@@ -35,7 +35,7 @@ export class ProdutosComponent implements OnInit {
         this.route.params.subscribe(params => this.categoria = params['categoria']);
 
         if (this.categoria != "" && this.categoria != null) {
-          this.produtoService.getList(this.categoria)
+          this.produtoService.getListCanShow(this.categoria)
             .then(lista => this.produtos = lista);
         } else {
           this.produtoService.getAll()

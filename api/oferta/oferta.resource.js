@@ -26,7 +26,6 @@ router.post('/', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     oferta.remove(req.params.id)
         .then(() => {
-            console.log('produto removido com sucesso');
             res.status(200);
         });
 });

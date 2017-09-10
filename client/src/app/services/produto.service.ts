@@ -28,9 +28,15 @@ export class ProdutoService {
 			.catch(error => 'Server error');
 	}
 
+	getListCanShow(categoria: string) {
+		return this.http.get(this.url + 'categorias/' + categoria + '/mostrar').toPromise()
+		.then(response => response.json())
+		.catch(error => 'Server error');
+	}
+
 	get(id) {
-		return this.http.get(this.url + id).toPromise()
-			.then(response => response.json())
+		return this.http.get(this.url + id)
+			.map(response => response.json())
 			.catch(error => 'Server error');
 	}
 

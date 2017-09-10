@@ -1,3 +1,5 @@
+import { ImagemService } from './../../services/imagem.service';
+import { Observable } from 'rxjs/Rx';
 import { Produto } from './../../model/produto';
 import { ProdutoService } from './../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,15 +14,46 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ProdutoComponent implements OnInit {
 
-	constructor(private produtoService: ProdutoService, private route: ActivatedRoute) { }
+	id = '';
+	produto: Produto = new Produto();
+	mensagem: boolean = false;
 
-	produto;
+	constructor (private produtoService: ProdutoService, private imagemService: ImagemService, private route: ActivatedRoute) {
+		this.route.params.subscribe(params => this.id = params['id']);
+		if (this.id != '' && this.id != null) {
+		  this.produtoService.get(this.id)
+			.subscribe(prod => {
+				if (!prod) {
+					this.mensagem = true;
+				} else {
+
+					this.produto = prod;
+
+					this.imagemService.findByProdutoId(this.produto.id)
+					.then(response => {
+						response.forEach(imagem => {
+							if(imagem.posicao == 1) {
+								this.imagemService.getImage(imagem.nome).then(resBase64 => {
+									let img = (<HTMLImageElement>document.getElementById('imagem'));
+									img.src = 'data:image/png;base64, ' + resBase64;
+								});
+							}
+						});
+					});
+				}
+			},
+			error => {
+				this.mensagem = true;
+				console.log(error);
+			});
+		} else {
+			this.mensagem = true;
+		}
+	}
+
 
 	ngOnInit() {
-		this.route.params
-		// (+) converts string 'id' to a number
-		.switchMap((params: Params) => this.produtoService.get(params['id']))
-		.subscribe((p) => this.produto = p);
+		
 	}
 
 }

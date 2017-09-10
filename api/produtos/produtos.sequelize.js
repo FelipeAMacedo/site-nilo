@@ -63,7 +63,6 @@ let update = function (novosDados) {
 
 
 
-                //     console.log(response);
                 //     return response;
                 // })
                 // .catch (err => {

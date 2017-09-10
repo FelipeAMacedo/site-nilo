@@ -19,8 +19,6 @@ export class ContatoService {
 		let options = new RequestOptions({ headers });
 		return this.http.post(this.url, email, options).toPromise()
 		  	.then(response => {
-				console.log('chegou na linha do service');
-				console.log(response);
 			})
 		  	.catch(error => console.log(error));
   }

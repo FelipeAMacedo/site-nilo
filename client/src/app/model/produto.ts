@@ -6,7 +6,8 @@ export class Produto {
     preco: number;
     descricao: string;
     mostrar: boolean = true;
-
+    posicao: number;
+    
     constructor() {};
 
     

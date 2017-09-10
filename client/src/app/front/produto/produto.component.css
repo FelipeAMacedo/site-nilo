@@ -13,3 +13,7 @@ h1 {
 .row {
     margin-bottom: 3.0em;
 }
+
+img {
+    max-width: 100%;
+}
