@@ -22,14 +22,12 @@ export class HeaderComponent implements OnInit {
   }
 
 	paginas = [
-    	{ nome: 'PEDRA', link: 'pedra' },
-    	{ nome: 'BLOCOS', link: 'blocos' },
-		{ nome: 'CIMENTO', link: 'cimento' },
-    	{ nome: 'TELHAS', link: 'telhas' },
-        { nome: 'AREIA', link: 'areia' },
-		{ nome: 'TIJOLO', link: 'tijolo' },
-	    { nome: 'CAL', link: 'cal' },
-        { nome: 'FERRAGENS', link: 'ferragens' },
+    { nome: 'PINTURA',     link: 'pintura' },
+    { nome: 'HIDRÁULICA',  link: 'hidraulica' },
+    { nome: 'ELÉTRICA',    link: 'eletrica' },
+    { nome: 'ALICERCE',    link: 'alicerce' },
+    { nome: 'ACABAMENTO',  link: 'acabamento' },
+    { nome: 'FERRAGENS',   link: 'ferragens' },
 		{ nome: 'FERRAMENTAS', link: 'ferramentas' },
 	];
 	

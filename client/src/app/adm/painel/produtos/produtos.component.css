@@ -31,10 +31,6 @@
     height: 300px;
 }
 
-.msg {
-    display: none;
-}
-
 table {
     border-collapse: collapse;
 }
@@ -56,4 +52,19 @@ tr:hover {
 
 form {
     width: 100%;
+}
+
+.alert {
+    display: none;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+.alert div {
+    display: none;
+}
+
+.show {
+    display: block;
 }

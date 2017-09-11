@@ -1,3 +1,4 @@
+import { ImagemService } from './../../services/imagem.service';
 import { Produto } from './../../model/produto';
 import { ProdutoService } from './../../services/produto.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,11 +17,28 @@ export class ProdutosComponent implements OnInit {
   produtos = [];
   categoria: string;
 
-  constructor(private produtoService: ProdutoService, private route: ActivatedRoute, private router: Router) {
+  constructor(private produtoService: ProdutoService, private imagemService: ImagemService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => this.categoria = params['categoria']);
     if (this.categoria != '' && this.categoria != null) {
       this.produtoService.getListCanShow(this.categoria)
-        .then(lista => this.produtos = lista);
+      .then(lista => {
+        this.produtos = lista;
+        lista.forEach(produto => {
+          
+          this.imagemService.findMain(produto.id)
+          .then(imagem => {
+            this.imagemService.getImage(imagem.nome).then(resBase64 => {
+              // setTimeout(() => {
+                // console.log(produto.id);
+                let img = (<HTMLImageElement>document.getElementById(produto.id));
+                img.src = 'data:image/png;base64, ' + resBase64;
+
+              // }, 5000);
+            });
+          
+          });
+        });
+      });
     } else {
       this.produtoService.getAll()
         .then(lista => this.produtos = lista);
@@ -36,7 +54,21 @@ export class ProdutosComponent implements OnInit {
 
         if (this.categoria != "" && this.categoria != null) {
           this.produtoService.getListCanShow(this.categoria)
-            .then(lista => this.produtos = lista);
+            .then(lista => {
+              this.produtos = lista;
+              // lista.forEach(produto => {
+                
+              //   this.imagemService.findMain(produto.id)
+              //   .then(imagem => {
+
+              //     this.imagemService.getImage(imagem.nome).then(resBase64 => {
+              //       let img = (<HTMLImageElement>document.getElementById(produto.id));
+              //       img.src = 'data:image/png;base64, ' + resBase64;
+              //     });
+                
+              //   });
+              // });
+            });
         } else {
           this.produtoService.getAll()
             .then(lista => this.produtos = lista);

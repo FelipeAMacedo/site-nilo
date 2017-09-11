@@ -33,16 +33,6 @@ app.get('/', (req, res, next) => {
     // res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
-// const Produto = sequelize.import(__dirname + "/models/produto");
-// const Oferta = sequelize.import(__dirname + "/models/oferta");
-// const Imagem = sequelize.import(__dirname + "/models/imagem");
-
-// Produto.hasOne(Oferta);
-// Oferta.belongsTo(Produto);
-// Produto.hasMany(Imagem, { as: 'Imagens', foreignKey: produtoId });
-// Produto.hasMany(Imagem, { as: "Imagens", foreignKey: 'produtoId'});
-// Imagem.belongsTo(Produto, { foreignKey: { name: 'produtoId', allowNull: false }, onDelete: 'CASCADE'});
-
 models.sequelize.sync({
     force: false
 }).then(() => {    

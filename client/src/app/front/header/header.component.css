@@ -63,6 +63,7 @@ p.top{
 .nav-upper {
     background-color: white; 
     height: 40px;
+    background-image: url('/assets/images/bg-header.jpg');    
      /* opacity: 0.8;   */
 }
 .nav-upper ul {
@@ -99,6 +100,10 @@ p.top{
   left: 15px;
   z-index: 1051;
   margin-left:60px;
+}
+
+.navbar-right a {
+    cursor: default;
 }
 
 .triangle {
@@ -171,6 +176,10 @@ p.top{
 .dropdown-menu a {
     width: 100% !important;
     background-color: #004593;    
+}
+
+.navbar-lower {
+    background-image: url('/assets/images/bg-header.jpg');
 }
 
 @media (min-width: 768px) {

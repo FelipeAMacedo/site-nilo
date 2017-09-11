@@ -97,7 +97,7 @@ export class ProdutosComponent implements OnInit {
         let file = (<HTMLInputElement>fotos64[x]);
         let fileInfo = {
           nome: '',
-          produtoId: this.novoProduto.id,
+          produtoId: response.id,
           posicao: 0
         };
 
@@ -114,13 +114,37 @@ export class ProdutosComponent implements OnInit {
         }
 
         if (file != null && file.files.length > 0) {
+          console.log(fileInfo);
           this.imagemService.insert(file.files[0], fileInfo)
+          .then(resposta => {
+            // this.limparFormulario();
+            // let alerta = document.getElementsByClassName('alert')[0];
+            // alerta.classList.add('alert-success');
+            // alerta.classList.add('show');
+      
+            // document.getElementById('insertProdSuccess').classList.add('show');
+            // setTimeout(() => {
+            //   alerta.classList.remove('show');
+            //   document.getElementById('insertProdSuccess').classList.remove('show');
+            // }, 4000);
+          })
           .catch(error => {
+            // this.limparFormulario();
             throw error;
           });
         }
 
         this.limparFormulario();
+
+        let alerta = document.getElementsByClassName('alert')[0];
+        alerta.classList.add('alert-success');
+        alerta.classList.add('show');
+  
+        document.getElementById('insertProdSuccess').classList.add('show');
+        setTimeout(() => {
+          alerta.classList.remove('show');
+          document.getElementById('insertProdSuccess').classList.remove('show');
+        }, 4000);
 
         this.produtoService.getAll()
         .then(lista => {
@@ -129,12 +153,15 @@ export class ProdutosComponent implements OnInit {
         .catch(listError => {
           throw listError;
         });
-
       }
     }).catch(err => {
       throw new Error(err);
     });
   }
+
+  mostrarMensagem() {
+    
+  };
 
   limparFormulario() {
     let inputText = document.querySelectorAll('input[type="text"]');
@@ -165,6 +192,7 @@ export class ProdutosComponent implements OnInit {
     this.form.reset();
 
     inputCheckBox.click();
+    window.scrollTo(0, 0);
   }
 
   selecionar(produto) {

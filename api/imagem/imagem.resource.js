@@ -58,7 +58,6 @@ router.post('/', imagesFolder.single('selectFile'), (req, res, next) => {
     // console.log('Produto ID from request' + req.body.fileInfo.produtoId);
     // console.log('REQ.BODY.FILEINFO' + req.body.fileInfo);
 
-
     imagem.insert(fileInfo)
         .then(arquivo => {
             res.sendStatus(200);
