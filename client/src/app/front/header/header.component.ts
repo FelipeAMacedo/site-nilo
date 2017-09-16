@@ -22,13 +22,13 @@ export class HeaderComponent implements OnInit {
   }
 
 	paginas = [
-    { nome: 'PINTURA',     link: 'pintura' },
-    { nome: 'HIDRÁULICA',  link: 'hidraulica' },
-    { nome: 'ELÉTRICA',    link: 'eletrica' },
-    { nome: 'ALICERCE',    link: 'alicerce' },
-    { nome: 'ACABAMENTO',  link: 'acabamento' },
-    { nome: 'FERRAGENS',   link: 'ferragens' },
-		{ nome: 'FERRAMENTAS', link: 'ferramentas' },
+    { nome: 'TINTAS E ACESSÓRIOS', link: 'tintas' },
+    { nome: 'HIDRÁULICA',          link: 'hidraulica' },
+    { nome: 'ELÉTRICA',            link: 'eletrica' },
+    { nome: 'ALICERCE',            link: 'alicerce' },
+    { nome: 'ACABAMENTO',          link: 'acabamento' },
+    { nome: 'FERRAGENS',           link: 'ferragens' },
+		{ nome: 'FERRAMENTAS',         link: 'ferramentas' },
 	];
 	
 	paginasMenu = this.paginas.slice(0, 6);

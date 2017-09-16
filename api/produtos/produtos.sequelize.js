@@ -25,6 +25,14 @@ let listAll = function (categoria) {
     return Produto.findAll();
 }
 
+let listLast = function(limitNum) {
+    return Produto.findAll({
+        limit: limitNum,
+        order: [['updatedAt', 'DESC']],
+        mostrar: 1
+    });
+}
+
 let findById = function (id) {
     return Produto.findById(id);
 }
@@ -84,6 +92,7 @@ module.exports = {
     listAll,
     listAllByCategoryCanShow,
     listAllByCategory,
+    listLast,
     findById,
     persist,
     update,

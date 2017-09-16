@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ImagemService {
 
-  private url = 'http://localhost:3000/api/imagem/';
-  // private url = 'https://nilo-materiais-construcao.herokuapp.com/api/imagem/'
+  // private url = 'http://localhost:3000/api/imagem/';
+  private url = 'https://nilo-materiais-construcao.herokuapp.com/api/imagem/'
 
   constructor(private http: Http) { }
 

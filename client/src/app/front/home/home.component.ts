@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
     private produtoService: ProdutoService,
     private imagemService: ImagemService) { }
 
+  private ofertas = [];  
   private produtos = [];
 
   ngOnInit() {
@@ -25,6 +26,22 @@ export class HomeComponent implements OnInit {
           .subscribe(result => {
             result.imagem = imagem.path;
             result.precoOferta = oferta.preco;
+            this.ofertas.push(result);
+          },
+          error => {
+            throw error;
+          });
+        });
+      });
+    });
+
+    this.produtoService.getLast(4).subscribe(lista => {
+      console.log(lista);
+      lista.forEach(produto => {
+        this.imagemService.findMain(produto.ProdutoId).then(imagem => {
+          this.produtoService.get(produto.ProdutoId)
+          .subscribe(result => {
+            result.imagem = imagem.path;
             this.produtos.push(result);
           },
           error => {

@@ -3,7 +3,19 @@ var router = express.Router();
 var imagem = require('./imagem.sequelize');
 var sharp = require('sharp');
 var multer = require('multer');
-var imagesFolder = multer({dest: './images/'});
+var FTPStorage = require('multer-ftp')
+
+var imagesFolder = multer({
+    storage: new FTPStorage({
+        basepath: '/public_html/assets/images/produtos',
+        ftp: {
+            host: 'ftp.nilomateriaisconstrucao.com.br',
+            secure: false,
+            user: 'nilomateriaisconstru',
+            password: 'lipes2jojo'
+        }
+    })
+});
 var fs = require('fs');
 
 router.get('/:id', (req, res) => {
@@ -30,7 +42,6 @@ router.get('/produto/:id/', (req, res) => {
 router.get('/image/:name', (req, res) => {
     fs.readFile('./images/' + req.params.name, function(err, data) {
         if (err) throw err;
-
         res.writeHead(200, {'Content-Type': 'image/jpeg'});
         var buf = new Buffer(data, '7bit').toString('base64');
         res.end(buf);
@@ -40,9 +51,15 @@ router.get('/image/:name', (req, res) => {
 router.post('/', imagesFolder.single('selectFile'), (req, res, next) => {
 
     let fileInfo = JSON.parse(req.body.fileInfo);
-    fileInfo.nome = req.file.filename;
+    fileInfo.nome = req.file.path.substring(36, req.file.path.length);
     fileInfo.tipo = req.file.mimetype;
     fileInfo.encoding = req.file.encoding;
+
+    console.log('FILENAME');
+    console.log(req.file.path.substring(36, req.file.path.length));
+
+    console.log('FILE');
+    console.log(req.file);
 
     // let fileInfo = {
     //     nome: "",

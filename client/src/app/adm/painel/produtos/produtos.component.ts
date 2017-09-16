@@ -14,6 +14,7 @@ export class ProdutosComponent implements OnInit {
   // fotos = {};
   produtos = [];
   novoProduto: Produto = new Produto();
+  imgUrl = "/assets/images/produtos/";
 
   @ViewChild('produtoForm') form;
 
@@ -76,10 +77,13 @@ export class ProdutosComponent implements OnInit {
           x++;
         }
 
-        this.imagemService.getImage(image.nome).then(resBase64 => {
-          let img = (<HTMLImageElement>document.querySelector(selector));
-          img.src = 'data:image/png;base64, ' + resBase64;
-        });
+        let img = (<HTMLImageElement>document.querySelector(selector));
+        img.src = this.imgUrl + image.nome;
+
+        // this.imagemService.getImage(image.nome).then(resBase64 => {
+        //   let img = (<HTMLImageElement>document.querySelector(selector));
+        //   img.src = 'data:image/png;base64, ' + resBase64;
+        // });
       });
     }).catch(error => {
       throw new Error('As fotos do produto não foram carregadas');
@@ -88,6 +92,12 @@ export class ProdutosComponent implements OnInit {
 
   inserirProduto() {
     let fotos64 = document.querySelectorAll('input[type="file"]');
+
+    if (this.novoProduto.preco) {
+      if (this.novoProduto.preco.toString().indexOf(',') !== -1) {
+        this.novoProduto.preco = parseFloat(this.novoProduto.preco.toString().replace(",", "."));
+      }
+    }
 
     this.produtoService.insert(this.novoProduto).then(response => {
       // this.novoProduto.id = response.id;
