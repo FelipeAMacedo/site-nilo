@@ -17,6 +17,7 @@ export class ProdutoComponent implements OnInit {
 	id = '';
 	produto: Produto = new Produto();
 	mensagem: boolean = false;
+	imgUrl = "/assets/images/produtos/";
 
 	constructor (private produtoService: ProdutoService, private imagemService: ImagemService, private route: ActivatedRoute) {
 		this.route.params.subscribe(params => this.id = params['id']);
@@ -33,10 +34,14 @@ export class ProdutoComponent implements OnInit {
 					.then(response => {
 						response.forEach(imagem => {
 							if(imagem.posicao == 1) {
-								this.imagemService.getImage(imagem.nome).then(resBase64 => {
-									let img = (<HTMLImageElement>document.getElementById('imagem'));
-									img.src = 'data:image/png;base64, ' + resBase64;
-								});
+								let img = (<HTMLImageElement>document.getElementById('imagem'));
+								img.src = this.imgUrl + imagem.nome;
+
+
+								// this.imagemService.getImage(imagem.nome).then(resBase64 => {
+								// 	let img = (<HTMLImageElement>document.getElementById('imagem'));
+								// 	img.src = 'data:image/png;base64, ' + resBase64;
+								// });
 							}
 						});
 					});

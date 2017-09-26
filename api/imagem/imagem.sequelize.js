@@ -32,8 +32,23 @@ let findMain = function(produtoId) {
     });
 }
 
+let findByProdutoPosition = function(pId, pos) {
+    return Imagem.findOne({
+        where : {
+            produtoId: pId,
+            posicao: pos
+        }
+    });
+}
+
 let insert = function(imagem) {
     return Imagem.create(imagem);
+}
+
+let remove = function (id) {
+    return Imagem.destroy({
+        where: {id: id}
+    });
 }
 
 module.exports = {
@@ -41,6 +56,8 @@ module.exports = {
     findByProdutoId,
     findAllBanners,
     findMain,
-    insert
+    findByProdutoIdPosition,
+    insert,
+    remove
 }
 

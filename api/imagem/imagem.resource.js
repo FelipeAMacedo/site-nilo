@@ -5,17 +5,20 @@ var sharp = require('sharp');
 var multer = require('multer');
 var FTPStorage = require('multer-ftp')
 
-var imagesFolder = multer({
-    storage: new FTPStorage({
-        basepath: '/public_html/assets/images/produtos',
-        ftp: {
-            host: 'ftp.nilomateriaisconstrucao.com.br',
-            secure: false,
-            user: 'nilomateriaisconstru',
-            password: 'lipes2jojo'
-        }
-    })
+var stor = new FTPStorage({
+    basepath: '/public_html/assets/images/produtos',
+    ftp: {
+        host: 'ftp.nilomateriaisconstrucao.com.br',
+        secure: false,
+        user: 'nilomateriaisconstru',
+        password: 'lipes2jojo'
+    }
 });
+
+var imagesFolder = multer({
+    storage: stor
+});
+
 var fs = require('fs');
 
 router.get('/:id', (req, res) => {
@@ -70,18 +73,29 @@ router.post('/', imagesFolder.single('selectFile'), (req, res, next) => {
     //     produtoId: 1
     // };
 
-    // console.log('FILE INFO' + fileInfo);
-    // console.log('Produto ID' + fileInfo.produtoId);
-    // console.log('Produto ID from request' + req.body.fileInfo.produtoId);
-    // console.log('REQ.BODY.FILEINFO' + req.body.fileInfo);
 
-    imagem.insert(fileInfo)
+    imagem.findByProdutoIdPosition(fileInfo.produtoId, fileInfo.posicao)
+    .then(imagemResposta => {
+        imagem.remove(imagemResposta.id)
+        .then(() => {
+            imagem.insert(fileInfo)
+            .then(arquivo => {
+                res.sendStatus(200);
+            })
+            .catch(errorUpdate => {
+                res.status(400).json(errorUpdate);
+            });
+        });
+    })
+    .catch(error => {
+        imagem.insert(fileInfo)
         .then(arquivo => {
             res.sendStatus(200);
         })
-        .catch(error => {
-            res.status(400).json(error);
+        .catch(errorInsert => {
+            res.status(400).json(errorInsert);
         });
+    });    
 });
 
 router.delete('/:id', (req, res, next) => {

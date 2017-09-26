@@ -55,3 +55,15 @@
 {
     margin: 0 0 11px;
 }
+
+.thumbnail img {
+    height: 200px;
+}
+
+.thumbnail p {
+    overflow: hidden;
+}
+
+.item {
+    height: 300px;
+}

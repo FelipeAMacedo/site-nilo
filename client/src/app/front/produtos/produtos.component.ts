@@ -16,6 +16,7 @@ export class ProdutosComponent implements OnInit {
 
   produtos = [];
   categoria: string;
+  imgUrl = "/assets/images/produtos/";
 
   constructor(private produtoService: ProdutoService, private imagemService: ImagemService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => this.categoria = params['categoria']);
@@ -24,17 +25,16 @@ export class ProdutosComponent implements OnInit {
       .then(lista => {
         this.produtos = lista;
         lista.forEach(produto => {
-          
+
           this.imagemService.findMain(produto.id)
           .then(imagem => {
-            this.imagemService.getImage(imagem.nome).then(resBase64 => {
-              // setTimeout(() => {
-                // console.log(produto.id);
-                let img = (<HTMLImageElement>document.getElementById(produto.id));
-                img.src = 'data:image/png;base64, ' + resBase64;
+            let img = (<HTMLImageElement>document.getElementById(produto.id));
+            img.src = this.imgUrl + imagem.nome;
 
-              // }, 5000);
-            });
+            // this.imagemService.getImage(imagem.nome).then(resBase64 => {
+            //     let img = (<HTMLImageElement>document.getElementById(produto.id));
+            //     img.src = 'data:image/png;base64, ' + resBase64;
+            // });
           
           });
         });
@@ -57,7 +57,7 @@ export class ProdutosComponent implements OnInit {
             .then(lista => {
               this.produtos = lista;
               // lista.forEach(produto => {
-                
+
               //   this.imagemService.findMain(produto.id)
               //   .then(imagem => {
 
@@ -65,7 +65,7 @@ export class ProdutosComponent implements OnInit {
               //       let img = (<HTMLImageElement>document.getElementById(produto.id));
               //       img.src = 'data:image/png;base64, ' + resBase64;
               //     });
-                
+
               //   });
               // });
             });

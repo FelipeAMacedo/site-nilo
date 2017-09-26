@@ -21,11 +21,11 @@ export class ImagemService {
       .catch(error => console.log(error));
   }
 
-  getImage(filename) {
-    return this.http.get(this.url + 'image/' + filename).toPromise()
-      .then(response => response.text())
-      .catch(error => console.log(error));
-  }
+  // getImage(filename) {
+  //   return this.http.get(this.url + 'image/' + filename).toPromise()
+  //     .then(response => response.text())
+  //     .catch(error => console.log(error));
+  // }
 
   insert(file, fileInfo) {
     return new Promise((resolve, reject) => {

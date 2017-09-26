@@ -60,36 +60,6 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  editarProduto(produto) {
-    this.limparFormulario();
-
-    this.novoProduto = produto;
-    this.imagemService.findByProdutoId(produto.id).then(response => {
-      let x = 2;
-      response.forEach(image => {
-        let selector = '#img';
-        if (image.posicao == 20) {
-          selector += 'Banner';
-        } else if (image.posicao == 1) {
-          selector += 'Foto1';
-        } else {
-          selector += 'Foto' + x;
-          x++;
-        }
-
-        let img = (<HTMLImageElement>document.querySelector(selector));
-        img.src = this.imgUrl + image.nome;
-
-        // this.imagemService.getImage(image.nome).then(resBase64 => {
-        //   let img = (<HTMLImageElement>document.querySelector(selector));
-        //   img.src = 'data:image/png;base64, ' + resBase64;
-        // });
-      });
-    }).catch(error => {
-      throw new Error('As fotos do produto não foram carregadas');
-    });
-  }
-
   inserirProduto() {
     let fotos64 = document.querySelectorAll('input[type="file"]');
 
@@ -124,14 +94,13 @@ export class ProdutosComponent implements OnInit {
         }
 
         if (file != null && file.files.length > 0) {
-          console.log(fileInfo);
           this.imagemService.insert(file.files[0], fileInfo)
           .then(resposta => {
             // this.limparFormulario();
             // let alerta = document.getElementsByClassName('alert')[0];
             // alerta.classList.add('alert-success');
             // alerta.classList.add('show');
-      
+
             // document.getElementById('insertProdSuccess').classList.add('show');
             // setTimeout(() => {
             //   alerta.classList.remove('show');
@@ -223,10 +192,13 @@ export class ProdutosComponent implements OnInit {
           x++;
         }
 
-        this.imagemService.getImage(image.nome).then(resBase64 => {
-          let img = (<HTMLImageElement>document.querySelector(selector));
-          img.src = 'data:image/png;base64, ' + resBase64;
-        });
+        let img = (<HTMLImageElement>document.querySelector(selector));
+        img.src = this.imgUrl + image.nome;
+
+        // this.imagemService.getImage(image.nome).then(resBase64 => {
+        //   let img = (<HTMLImageElement>document.querySelector(selector));
+        //   img.src = 'data:image/png;base64, ' + resBase64;
+        // });
       });
     }).catch(error => {
       throw new Error('As fotos do produto não foram carregadas');
