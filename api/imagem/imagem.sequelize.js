@@ -32,7 +32,7 @@ let findMain = function(produtoId) {
     });
 }
 
-let findByProdutoPosition = function(pId, pos) {
+let findByProdutoIdPosition = function(pId, pos) {
     return Imagem.findOne({
         where : {
             produtoId: pId,
