@@ -12,6 +12,7 @@ var produto = require('./api/produto/produto.resource');
 var oferta = require('./api/oferta/oferta.resource');
 var imagem = require('./api/imagem/imagem.resource');
 
+app.use(allowCrossDomain);
 app.use(cors());
 
 // Parse application/x-www-form-urlencoded
@@ -26,7 +27,7 @@ app.use('/api/produtos', produtos);
 app.use('/api/contato', contato);
 app.use('/api/oferta', oferta);
 app.use('/api/imagem', imagem);
-app.use('/api/produtos/pedra/', produto)
+app.use('/api/produtos/pedra/', produto);
 
 app.get('/', (req, res, next) => {
     // app.use(express.static(path.join(__dirname, 'client/dist')));
