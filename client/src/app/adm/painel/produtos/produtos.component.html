@@ -64,6 +64,16 @@
         <label for="descricaoProduto">Descrição</label>
         <input type="text" class="form-control" id="descricaoProduto" [(ngModel)]="novoProduto.descricao" name="descricaoProduto">
       </div>
+      <div class="form-group">
+        <label for="informacaoProduto">Informações do Produto</label>
+        <textarea class="form-control" rows="5" id="informacaoProduto" [(ngModel)]="novoProduto.informacao" name="informacaoProduto"></textarea>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="freteProduto" [(ngModel)]="novoProduto.frete" name="freteProduto">
+          Frete a combinar
+        </label>
+      </div>
       <div class="form-check">
         <label class="form-check-label">
           <input type="checkbox" class="form-check-input" id="mostrarProduto" [(ngModel)]="novoProduto.mostrar" name="mostrarProduto" checked>

@@ -5,7 +5,9 @@ export class Produto {
     marca: string;
     preco: number;
     descricao: string;
+    informacao: string;
     mostrar: boolean = true;
+    frete: boolean = false;
     posicao: number;
     
     constructor() {};

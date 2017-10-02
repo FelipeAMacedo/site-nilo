@@ -12,7 +12,6 @@ var produto = require('./api/produto/produto.resource');
 var oferta = require('./api/oferta/oferta.resource');
 var imagem = require('./api/imagem/imagem.resource');
 
-app.use(allowCrossDomain);
 app.use(cors());
 
 // Parse application/x-www-form-urlencoded
