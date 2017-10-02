@@ -23,6 +23,13 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
+router.get('/ultimos/prod/:qtd', (req, res, next) => {
+    produtos.listLast(req.params.qtd)
+        .then(list => {
+            res.status(200).json(list);
+        });
+});
+
 router.get('/ultimos/:qtd', (req, res, next) => {
     oferta.listLast(req.params.qtd)
         .then(list => {

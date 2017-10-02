@@ -19,25 +19,41 @@ export class HomeComponent implements OnInit {
   private produtos = [];
 
   ngOnInit() {
-    this.ofertaService.getLast(4).subscribe(lista => {
-      lista.forEach(oferta => {
-        this.imagemService.findMain(oferta.ProdutoId).then(imagem => {
-          this.produtoService.get(oferta.ProdutoId)
-          .subscribe(result => {
-            result.imagem = imagem.path;
-            result.precoOferta = oferta.preco;
-            this.ofertas.push(result);
-          },
-          error => {
-            throw error;
-          });
-        });
-      });
-    });
+    // this.ofertaService.getLast(4).subscribe(lista => {
+    //   lista.forEach(oferta => {
+    //     this.imagemService.findMain(oferta.ProdutoId).then(imagem => {
+    //       this.produtoService.get(oferta.ProdutoId)
+    //       .subscribe(result => {
+    //         result.imagem = imagem.path;
+    //         result.precoOferta = oferta.preco;
+    //         this.ofertas.push(result);
+    //       },
+    //       error => {
+    //         throw error;
+    //       });
+    //     });
+    //   });
+    // });
 
-    this.produtoService.getLast(4).subscribe(lista => {
-      console.log(lista);
-      lista.forEach(produto => {
+    // this.produtoService.getLast(4).subscribe(lista => {
+    //   console.log(lista);
+    //   lista.forEach(produto => {
+    //     this.imagemService.findMain(produto.ProdutoId).then(imagem => {
+    //       this.produtoService.get(produto.ProdutoId)
+    //       .subscribe(result => {
+    //         result.imagem = imagem.path;
+    //         this.produtos.push(result);
+    //       },
+    //       error => {
+    //         throw error;
+    //       });
+    //     });
+    //   });
+    // });
+    this.produtoService.getLast(4)
+    .then(lista => {
+      for (let produto of lista) {
+      
         this.imagemService.findMain(produto.ProdutoId).then(imagem => {
           this.produtoService.get(produto.ProdutoId)
           .subscribe(result => {
@@ -48,7 +64,10 @@ export class HomeComponent implements OnInit {
             throw error;
           });
         });
-      });
+      };
+    })
+    .catch(error => {
+      console.log('Error');
     });
   }
 }

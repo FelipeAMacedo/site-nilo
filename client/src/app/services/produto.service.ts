@@ -35,14 +35,17 @@ export class ProdutoService {
 	}
 
 	getLast(lastNum: number) {
-		let params = new URLSearchParams();
-		params.set('qtd', '4');
-		let options = new RequestOptions({
-			// Have to make a URLSearchParams with a query string
-			search: params // <-----
-		});
-		return this.http.get(this.url + 'ultimos/', options)
-			.map(response => response.json())
+		// let params = new URLSearchParams();
+		// params.set('qtd', '4');
+		// let options = new RequestOptions({
+		// 	// Have to make a URLSearchParams with a query string
+		// 	search: params // <-----
+		// });
+		// return this.http.get(this.url + 'ultimos/', options)
+		// 	.map(response => response.json())
+		// 	.catch(error => 'Server error');
+		return this.http.get(this.url + 'ultimos/prod/' + lastNum).toPromise()
+			.then(response => response.json())
 			.catch(error => 'Server error');
 	}
 

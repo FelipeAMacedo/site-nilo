@@ -159,8 +159,8 @@ export class ProdutosComponent implements OnInit {
 
     for (let x = 0; x < inputFile.length; x++) {
       let input = (<HTMLInputElement>inputFile[x]);
-      input.value = '';
-      input.files[0] = null;
+      input.value = null;
+      // input.files[0] = null;
     };
 
     for (let x = 0; x < imgs.length; x++) {
@@ -180,16 +180,13 @@ export class ProdutosComponent implements OnInit {
 
     Object.assign(this.novoProduto, produto);
     this.imagemService.findByProdutoId(produto.id).then(response => {
-      let x = 2;
+
       response.forEach(image => {
         let selector = '#img';
         if (image.posicao == 20) {
           selector += 'Banner';
-        } else if (image.posicao == 1) {
-          selector += 'Foto1';
         } else {
-          selector += 'Foto' + x;
-          x++;
+          selector += 'Foto' + image.posicao;
         }
 
         let img = (<HTMLImageElement>document.querySelector(selector));
