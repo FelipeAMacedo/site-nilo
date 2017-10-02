@@ -50,8 +50,12 @@ export class HomeComponent implements OnInit {
     //     });
     //   });
     // });
+
+    console.log('Vai para a lista');
     this.produtoService.getLast(4)
     .then(lista => {
+      console.log('Essa é a lista');
+      console.log(lista.length);
       for (let produto of lista) {
       
         this.imagemService.findMain(produto.ProdutoId).then(imagem => {
