@@ -28,7 +28,16 @@ export class ProdutoComponent implements OnInit {
 					this.mensagem = true;
 				} else {
 
+
 					this.produto = prod;
+					
+					console.log(this.produto.informacao);
+					console.log(this.produto.frete);
+					
+					if (this.produto.frete) {
+						this.produto.informacao += '<br />Frete a Combinar';
+					}
+					
 
 					this.imagemService.findByProdutoId(this.produto.id)
 					.then(response => {

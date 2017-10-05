@@ -28,7 +28,7 @@ let listAll = function (categoria) {
 let listLast = function(limitNum) {
     return Produto.findAll({
         limit: limitNum,
-        order: 'updatedAt DESC'
+        order: ['updatedAt', 'DESC']
     });
 }
 

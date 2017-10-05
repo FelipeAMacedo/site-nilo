@@ -12,7 +12,7 @@ let listLast = function(limitNum) {
     return Oferta.findAll({
         attributes: ['id','preco','createdAt', 'updatedAt', 'produtoId'],
         limit: limitNum,
-        order: [['updatedAt', 'DESC']],
+        order: ['updatedAt', 'DESC'],
     });
 }
 

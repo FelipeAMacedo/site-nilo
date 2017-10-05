@@ -51,27 +51,27 @@ export class HomeComponent implements OnInit {
     //   });
     // });
 
-    console.log('Vai para a lista');
-    this.produtoService.getLast(4)
-    .then(lista => {
-      console.log('Essa é a lista');
-      console.log(lista.length);
-      for (let produto of lista) {
+
+    // this.produtoService.getLast(4)
+    // .then(lista => {
+    //   console.log('Essa é a lista');
+    //   console.log(lista.length);
+    //   for (let produto of lista) {
       
-        this.imagemService.findMain(produto.ProdutoId).then(imagem => {
-          this.produtoService.get(produto.ProdutoId)
-          .subscribe(result => {
-            result.imagem = imagem.path;
-            this.produtos.push(result);
-          },
-          error => {
-            throw error;
-          });
-        });
-      };
-    })
-    .catch(error => {
-      console.log('Error');
-    });
+    //     this.imagemService.findMain(produto.ProdutoId).then(imagem => {
+    //       this.produtoService.get(produto.ProdutoId)
+    //       .subscribe(result => {
+    //         result.imagem = imagem.path;
+    //         this.produtos.push(result);
+    //       },
+    //       error => {
+    //         throw error;
+    //       });
+    //     });
+    //   };
+    // })
+    // .catch(error => {
+    //   console.log('Error');
+    // });
   }
 }

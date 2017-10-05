@@ -69,11 +69,7 @@ export class ProdutosComponent implements OnInit {
       }
     }
 
-    this.novoProduto.informacao = this.novoProduto.informacao.replace(/\n\r?/g, '<br />');
-
-    if (this.novoProduto.frete) {
-      this.novoProduto.informacao += '<br />Frete a combinar';
-    }
+    // this.novoProduto.informacao = this.novoProduto.informacao.replace(/\n\r?/g, '<br />');
 
     this.produtoService.insert(this.novoProduto).then(response => {
       // this.novoProduto.id = response.id;
