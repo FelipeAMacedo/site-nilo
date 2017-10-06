@@ -17,3 +17,9 @@ h1 {
 img {
     max-width: 100%;
 }
+
+pre {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: white;
+    border: none;
+}

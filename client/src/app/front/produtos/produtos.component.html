@@ -16,7 +16,15 @@
                             <h4 class="group inner list-group-item-heading">
                                 {{ produto.nome }}</h4>
                             <p class="group inner list-group-item-text">{{ produto.descricao }}</p>
-                            <p><span *ngIf="produto.aPartir">A partir de </span><span class="preco">{{ produto.preco }}</span></p>
+                            <p>
+                                <span *ngIf="produto.aPartir">A partir de </span>
+                                <span *ngIf="!produto.aPartir">Por apenas </span>                                
+                                <span *ngIf="produto.preco">R$ </span>
+                                <span class="preco" *ngIf="produto.preco">{{ produto.preco }}</span>
+                            </p>
+                            <div class="anchor-container">
+                                <a href="" class="btn btn-info" [routerLink]="['/produto/', produto.id]">saiba mais</a>
+                            </div>
                         </div>
                     </div>
                 </a>

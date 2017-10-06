@@ -11,8 +11,13 @@
 			<div class="col-md-7 info">
 				<p><b>Marca:</b> {{ produto.marca }}</p>
 				<p><b>Descrição:</b> {{ produto.descricao }}</p>
-				<p><b>Preço:</b> R$ {{ produto.preco }}</p>
-				<p><b>Informações do produto:</b></p> {{ produto.informacao }}
+				<p><b>Preço:</b><span *ngIf="produto.aPartir"> a partir de</span><span class="preco"> R$ {{ produto.preco }}</span></p>
+				<p><b>Informações do produto:</b></p> 
+				<pre>{{ produto.informacao }}</pre>
+				<p *ngIf="produto.frete"><b>Frete a combinar</b></p>
+				<div class="anchor-container">
+					<a href="" class="btn btn-info" [routerLink]="['/contato/']">SOLICITE SEU ORÇAMENTO</a>
+				</div>
 			</div>
 		</div>		
 	</div>

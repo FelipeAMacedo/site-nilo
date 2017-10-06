@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         categoria: DataTypes.STRING,
         marca: DataTypes.STRING,
         aPartir: { type: DataTypes.BOOLEAN, field: 'a_partir_de' },
-        preco: DataTypes.DOUBLE,
+        preco: DataTypes.DOUBLE(9,2),
         descricao: DataTypes.TEXT,
         informacao: DataTypes.TEXT,
         frete: { type: DataTypes.BOOLEAN, defaultValue: false},
