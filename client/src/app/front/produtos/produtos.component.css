@@ -67,3 +67,20 @@
 .item {
     height: 300px;
 }
+
+
+
+.produto-nome {
+    font-weight: 600;
+}
+
+.produto-de {
+    font-size: 0.9em;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.preco {
+    font-size: 1.5em;
+    font-weight: 900;
+}

@@ -56,9 +56,17 @@
         <label for="marcaProduto">Marca</label>
         <input type="text" class="form-control" id="marcaProduto" [(ngModel)]="novoProduto.marca" name="marcaProduto">
       </div>
-      <div class="form-group">
-        <label for="precoProduto">Preco</label>
-        <input type="text" class="form-control" id="precoProduto" [(ngModel)]="novoProduto.preco" name="precoProduto">
+      <div class="row">
+        <div class="form-check" style="padding-top: 30px; padding-left: 20px; width: 20%; display: inline-block;">
+          <label class="form-check-label" style="vertical-align: middle;">
+            <input type="checkbox" class="form-check-input" id="aPartir" [(ngModel)]="novoProduto.aPartir" name="aPartir">
+            A partir de
+          </label>
+        </div>
+        <div class="form-group" style="width: 16%; display: inline-block;">
+          <label for="precoProduto">Preco</label>
+          <input type="text" class="form-control" id="precoProduto" [(ngModel)]="novoProduto.preco" name="precoProduto">
+        </div>
       </div>
       <div class="form-group">
         <label for="descricaoProduto">Descrição</label>

@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         nome: DataTypes.STRING,
         categoria: DataTypes.STRING,
         marca: DataTypes.STRING,
+        aPartir: { type: DataTypes.BOOLEAN, field: 'a_partir_de' },
         preco: DataTypes.DOUBLE,
         descricao: DataTypes.TEXT,
         informacao: DataTypes.TEXT,
