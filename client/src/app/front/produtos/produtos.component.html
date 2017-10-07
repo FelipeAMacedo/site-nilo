@@ -18,7 +18,7 @@
                             <p class="group inner list-group-item-text">{{ produto.descricao }}</p>
                             <p>
                                 <span *ngIf="produto.aPartir">A partir de </span>
-                                <span *ngIf="!produto.aPartir">Por apenas </span>                                
+                                <span *ngIf="!produto.aPartir && produto.preco > 0">Por apenas </span>                                
                                 <span *ngIf="produto.preco">R$ </span>
                                 <span class="preco" *ngIf="produto.preco">{{ produto.preco }}</span>
                             </p>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="produtos.length < 1">
+    <div *ngIf="nencontrado">
         <h2>Nenhum produto encontrado</h2>
     </div>
 </div>

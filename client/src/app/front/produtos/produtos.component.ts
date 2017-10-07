@@ -17,6 +17,7 @@ export class ProdutosComponent implements OnInit {
   produtos = [];
   categoria: string;
   imgUrl = "/assets/images/produtos/";
+  nencontrado = false;
 
   constructor(private zone: NgZone, private produtoService: ProdutoService, private imagemService: ImagemService, private route: ActivatedRoute, private router: Router) {
     // this.route.params.subscribe(params => this.categoria = params['categoria']);
@@ -51,6 +52,7 @@ export class ProdutosComponent implements OnInit {
       this.produtoService.getListCanShow(this.categoria)
       .then(lista => {
         this.produtos = lista;
+
         lista.forEach(produto => {
 
           this.imagemService.findMain(produto.id)
@@ -62,14 +64,16 @@ export class ProdutosComponent implements OnInit {
             //     let img = (<HTMLImageElement>document.getElementById(produto.id));
             //     img.src = 'data:image/png;base64, ' + resBase64;
             // });
-          
           });
         });
+
+        this.nencontrado =  lista.length < 1;
       });
     } else {
       this.produtoService.getAll()
         .then(lista => {
           this.produtos = lista;
+
           lista.forEach(produto => {
 
           this.imagemService.findMain(produto.id)
@@ -81,9 +85,12 @@ export class ProdutosComponent implements OnInit {
             //     let img = (<HTMLImageElement>document.getElementById(produto.id));
             //     img.src = 'data:image/png;base64, ' + resBase64;
             // });
-          
+
           });
         });
+
+        this.nencontrado =  lista.length < 1;
+
       });
     }
 

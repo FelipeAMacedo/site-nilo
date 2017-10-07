@@ -18,6 +18,13 @@ img {
     max-width: 100%;
 }
 
+.btn-info {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;    
+    color: black;
+    border: none;
+    background-color: #fcab0e;
+}
+
 pre {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     background-color: white;
