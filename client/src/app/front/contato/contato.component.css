@@ -9,3 +9,15 @@ h1 {
 #telefone {
     font-size: 1.5em;
 }
+
+.alert {
+    display: none;
+    /* position: fixed;
+    right: 10px;
+    top: 10px; */
+}
+
+.alert div {
+    display: none;
+    text-align: center;
+}

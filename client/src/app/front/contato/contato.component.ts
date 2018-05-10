@@ -17,6 +17,35 @@ export class ContatoComponent implements OnInit {
   }
 
   enviarEmail() {
-    this.contatoService.enviarEmail(this.email);
+    this.contatoService.enviarEmail(this.email).then(() => {
+      this.mostrarMensagem('success');
+    })
+    .catch(error => {
+      this.mostrarMensagem('fail');
+    });
+  }
+
+  mostrarMensagem(conclusion) {
+    let alerta = document.getElementsByClassName('alert')[0];
+
+    let mensagem;
+
+    if (conclusion == 'success') {
+      mensagem = document.getElementById('emailSuccess');
+
+      alerta.classList.add('alert-success');
+    } else if (conclusion == 'fail') {
+      mensagem = document.getElementById('emailFail');
+
+      alerta.classList.add('alert-danger');
+    }
+
+    alerta.classList.add('show');
+    mensagem.classList.add('show');
+
+    setTimeout(() => {
+      alerta.classList.remove('show');
+      mensagem.classList.remove('show');
+    }, 4000);
   }
 }

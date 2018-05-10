@@ -63,7 +63,8 @@ p.top{
 .nav-upper {
     background-color: white; 
     height: 40px;
-    background-image: url('/assets/images/bg-header.jpg');    
+    /* background-image: url('/assets/images/bg-header.jpg');     */
+    background: transparent;
      /* opacity: 0.8;   */
 }
 .nav-upper ul {
@@ -124,6 +125,17 @@ p.top{
     vertical-align: middle;
     margin-right: 10px;
     margin-top: 10px;
+}
+
+.menu_icon {
+    float: left;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.icon_description {
+    color: black;
+    display: inline-block;
 }
 
 @media (max-width: 1140px) {
@@ -220,7 +232,22 @@ p.top{
 }
 
 .navbar-lower {
+    height: 115px;
+    background: transparent;
+    /* background-image: url('/assets/images/bg-header.jpg'); */
+}
+
+.navbar.navbar-lower .navbar-nav {
+    margin-top: 26px;
+}
+
+.navbar-background {
     background-image: url('/assets/images/bg-header.jpg');
+    /* background: red; For browsers that do not support gradients */
+    /* background: -webkit-radial-gradient(white 40%, #cbd4e8); For Safari 5.1 to 6.0 */
+    /* background: -o-radial-gradient(white 40%, #cbd4e8); For Opera 11.1 to 12.0 */
+    /* background: -moz-radial-gradient(white 40%, #cbd4e8); For Firefox 3.6 to 15 */
+    /* background: radial-gradient(white 40%, #cbd4e8); Standard syntax */
 }
 
 @media (min-width: 768px) {
